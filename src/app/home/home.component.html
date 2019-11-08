@@ -1,0 +1,115 @@
+<div class="home">
+  <mat-grid-list cols="4" rowHeight="20vh" gutterSize="10px" class="gridList">
+    <mat-grid-tile>
+      <a  routerLink="/shop">
+        <mat-card class="matCard">
+          <mat-card-title>Shop</mat-card-title>
+          <mat-card-content>
+            <div>
+              <span matBadge="5" matBadgeSize="small" matBadgeColor="warn" matBadgeOverlap="false">Notifications</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a  routerLink="/doctor">
+        <mat-card class="matCard">
+          <mat-card-title>Doctor</mat-card-title>
+          <mat-card-content>
+            <div>
+              <span matBadge="2" matBadgeSize="small" matBadgeColor="warn" matBadgeOverlap="false">Notifications</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a  routerLink="/ambulance">
+        <mat-card class="matCard">
+          <mat-card-title>Ambulance</mat-card-title>
+          <mat-card-content>
+            <div>
+              <span matBadge="4" matBadgeSize="small" matBadgeColor="warn" matBadgeOverlap="false">Notifications</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a  routerLink="/hospital">
+        <mat-card class="matCard">
+          <mat-card-title>Hospital</mat-card-title>
+          <mat-card-content>
+            <div>
+              <span matBadge="1" matBadgeSize="small" matBadgeColor="warn" matBadgeOverlap="false">Notifications</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="2:1" gutterSize="10px">
+    <mat-grid-tile>
+          <mat-card class="innerCard">
+              <mat-card-title>Profit</mat-card-title>
+              <mat-card-content>
+                <div>
+                  <mat-progress-spinner color="accent" strokeWidth="10" [diameter]="70" value="70"></mat-progress-spinner>
+                </div>
+              </mat-card-content>
+            </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="innerCard">
+            <mat-card-title>No. of visits</mat-card-title>
+            <mat-card-content>
+              <div>
+                <mat-progress-spinner color="warn" strokeWidth="10" [diameter]="70" value="80"></mat-progress-spinner>
+              </div>
+            </mat-card-content>
+          </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="2">
+        <a  routerLink="/users">
+          <mat-card class="userCard">
+            <mat-card-title>Users</mat-card-title>
+            <mat-card-content>
+              <div>
+                  <mat-progress-spinner strokeWidth="20" [diameter]="150" value="90"></mat-progress-spinner>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </a>
+        <!-- <mat-card class="userCard">
+            <mat-card-title>Users</mat-card-title>
+            <mat-card-content>
+              <div>
+                  <mat-progress-spinner strokeWidth="20" [diameter]="150" value="90"></mat-progress-spinner>
+              </div>
+            </mat-card-content>
+          </mat-card> -->
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="innerCard">
+            <mat-card-title>Sales</mat-card-title>
+            <mat-card-content>
+              <div>
+                <mat-progress-spinner strokeWidth="10" [diameter]="70" value="60"></mat-progress-spinner>
+              </div>
+            </mat-card-content>
+          </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="innerCard">
+            <mat-card-title>Customer</mat-card-title>
+            <mat-card-content>
+              <div>
+                <mat-progress-spinner color="accent" strokeWidth="10" [diameter]="70" value="40"></mat-progress-spinner>
+              </div>
+            </mat-card-content>
+          </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

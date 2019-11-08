@@ -1,0 +1,20 @@
+<h3>Appointment List</h3>
+
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let patient of patients">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Patient Name: {{patient.name}}</mat-panel-title>
+          <mat-panel-description>
+            Expected Date: {{patient.date}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Patient Age: {{patient.age}}</p>
+        <p>Address: {{patient.address}}</p>
+        <p>Mobile: {{patient.contact}}</p>
+        <p>Time: {{patient.time}}</p>
+        <mat-action-row>
+          <button mat-raised-button>Approve</button>
+          <button mat-raised-button>Deny</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+</mat-accordion>

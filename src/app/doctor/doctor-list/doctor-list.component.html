@@ -1,0 +1,33 @@
+<h3>Doctor List</h3>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let doctor of doctors">
+        <mat-expansion-panel-header (click)="getChamber(doctor.id)">
+          <mat-panel-title>Name: {{doctor.name}}</mat-panel-title>
+          <mat-panel-description>
+            {{doctor.hospitalAddress}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="100px" gutterSize="10px">
+            <mat-grid-tile rowspan="2">
+              <div class="doctorImg">
+                <img src="../../../assets/image/{{doctor.image}}.png" alt="Doctor Image">
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <p>{{doctor.description}}</p>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <br>
+          <h4>Chambers</h4>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let chamber of chambers">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>Name: {{chamber.name}} </mat-panel-title>
+                  <mat-panel-description>
+                    Address: {{chamber.chamberAddress}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+              </mat-expansion-panel>
+            </mat-accordion>
+      </mat-expansion-panel>
+</mat-accordion>

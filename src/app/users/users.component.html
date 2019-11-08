@@ -1,0 +1,17 @@
+<mat-accordion>
+  <h3>Users:</h3>
+    <mat-expansion-panel *ngFor="let user of users">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{user.id}}- Name: {{user.name}}</mat-panel-title>
+          <mat-panel-description>
+            {{user.address}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <img src="../../assets/image/{{user.image}}.jpg" alt="">
+        <p>{{user.contact}}</p>
+        <p>{{user.email}}</p>
+        <mat-action-row>
+          <button mat-raised-button>Enroll</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,23 @@
+<!-- <mat-tab-group #tabRef>
+    <mat-tab label="Product List">
+      <app-product-detaisl></app-product-detaisl>
+    </mat-tab>
+    <mat-tab label="Order List">
+      <app-order-details></app-order-details>
+    </mat-tab>
+    <mat-tab label="Catagory">React Content</mat-tab>
+    <mat-tab label="Creat Order">Hi</mat-tab>
+  </mat-tab-group> -->
+  <nav mat-tab-nav-bar>
+      <a mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.link"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      {{link.label}}
+      </a>
+
+      </nav>
+      <router-outlet></router-outlet>
+
+

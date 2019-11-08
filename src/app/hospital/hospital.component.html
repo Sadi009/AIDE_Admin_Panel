@@ -1,0 +1,24 @@
+<h3>Hospitals</h3>
+<mat-list>
+    <mat-grid-list cols="4" rowHeight="100px" gutterSize="10px">
+        <mat-grid-tile>
+            <button mat-raised-button color="accent">Add Hospitals</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput type="text" name="search" [(ngModel)]="searchText">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+  <mat-list-item *ngFor="let hospital of hospitals | filter: {name: searchText};">
+    <h3 matLine>Name: {{hospital.name}}</h3>
+    <p matLine>Address: {{hospital.address}}</p>
+    <p matLine>Contact: {{hospital.contact}}</p>
+    <button mat-raised-button color="primary">Edit</button>
+    <button mat-raised-button color="warn">Delete</button>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

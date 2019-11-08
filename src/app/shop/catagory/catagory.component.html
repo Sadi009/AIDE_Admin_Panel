@@ -1,0 +1,31 @@
+<h3>Catagories</h3>
+<mat-list>
+    <div>
+        <button mat-raised-button color="accent">Add Catagroy</button>
+      </div>
+  <mat-list-item *ngFor="let catagory of catagories">
+    <h3 matLine>{{catagory.name}}</h3>
+    <div>
+      <button mat-raised-button color="primary" (click)=onEdit(myDialog)>Edit</button>
+    </div>
+    <div>
+      <button mat-raised-button color="warn">Delete</button>
+    </div>
+    <mat-divider></mat-divider>
+    <ng-template #myDialog>
+        <h2 matDialogTitle>Catagory</h2>
+        <mat-dialog-content>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Catagroy Name</mat-label>
+            <input matInput value="{{catagory.name}}">
+          </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+          <button mat-button matDialogClose color="primary">Edit</button>
+        </mat-dialog-actions>
+      </ng-template>
+  </mat-list-item>
+</mat-list>
+<!-- Dialog  -->
+
+<!-- Dialog End  -->
