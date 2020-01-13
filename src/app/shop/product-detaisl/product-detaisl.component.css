@@ -3,7 +3,7 @@ table {
 }
 .mat-form-field {
   font-size: 14px;
-  width: 80%;
+  width: 75%;
 }
 
 tr.example-detail-row {
@@ -55,4 +55,10 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 .shopDialog {
   padding: 100px;
+}
+h3, mat-panel-title, mat-panel-description {
+  font-family: cursive !important;
+}
+mat-expansion-panel button {
+  margin-left: 10px;
 }

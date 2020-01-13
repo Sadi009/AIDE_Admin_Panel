@@ -56,3 +56,6 @@ tr.example-element-row:not(.example-expanded-row):active {
 .shopDialog {
   padding: 100px;
 }
+h3 {
+  font-family: cursive !important;
+}

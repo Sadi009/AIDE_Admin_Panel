@@ -1,24 +1,95 @@
 <h3>Ambulance</h3>
 <mat-list>
-    <mat-grid-list cols="4" rowHeight="100px" gutterSize="10px">
-        <mat-grid-tile>
-            <button mat-raised-button color="accent">Add Ambulance</button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput type="text" name="search" [(ngModel)]="searchText">
+  <button mat-raised-button color="accent"  (click)="onAddAmbulance(ambulance)">Add Ambulance</button>
+  <!-- Dialog  -->
+  <ng-template #ambulance>
+    <h2 matDialogTitle>Add Ambulance!</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+          <div class="uploadImage">
+            <mat-label>Select Image</mat-label> <br>
+            <input type="file" id="myfile" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" required>
+          </div>
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+            name="name"
+            required
+              [(ngModel)] = "name"
+              type="text">
           </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput
+              name="address"
+              required
+                [(ngModel)] = "address"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput
+                name="mobile"
+                required
+                  [(ngModel)] = "mobile"
+                  type="text">
+              </mat-form-field>
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onSubmit()">Add</button>
+                </mat-dialog-actions>
+        </form>
 
-
-  <mat-list-item *ngFor="let ambulance of ambulances | filter: {name: searchText};">
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
+  <mat-form-field floatLabel="auto">
+    <mat-label><i class="material-icons">search</i></mat-label>
+    <input matInput type="text" name="search" placeholder="Search">
+  </mat-form-field>
+  <mat-list-item *ngFor="let ambulance of ambulances">
+    <img matLine src="{{ambulance.image}}" alt="" style="width: 100px; height: 100px;">
     <h3 matLine>Name: {{ambulance.name}}</h3>
     <p matLine>Address: {{ambulance.address}}</p>
-    <p matLine>Contact: {{ambulance.contact}}</p>
-    <button mat-raised-button color="primary">Edit</button>
-    <button mat-raised-button color="warn">Delete</button>
+    <p matLine>Mobile: {{ambulance.mobile}}</p>
+    <button mat-raised-button color="primary" (click)="onEditAmbulance(editAmbulance)">Edit</button>
+    <button mat-raised-button color="warn" (click)="onDeleteAmbulance(ambulance)">Delete</button>
+    <!-- Dialog Edit Ambulance -->
+  <ng-template #editAmbulance>
+    <h2 matDialogTitle>Edit Ambulance!</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+              name="name"
+              required
+              [(ngModel)] = "ambulance.name"
+              type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput
+                name="address"
+                required
+                [(ngModel)] = "ambulance.address"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput
+                  name="mobile"
+                  required
+                  [(ngModel)] = "ambulance.mobile"
+                  type="text">
+              </mat-form-field>
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onUpdate(ambulance)">Update</button>
+                </mat-dialog-actions>
+        </form>
+
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>

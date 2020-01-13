@@ -1,17 +1,88 @@
+<h3>Users</h3>
+<button class="addButton" mat-raised-button color="accent" (click)="onOperDialog(addUser)">Add Users</button>
+<mat-form-field floatLabel="auto">
+  <mat-label><i class="material-icons">search</i></mat-label>
+  <input matInput type="text" name="search" placeholder="Search">
+</mat-form-field>
+<!-- Dialog Add user -->
+<ng-template #addUser>
+  <h2 matDialogTitle>Add Users</h2>
+  <mat-dialog-content>
+    <form #customeForm="ngForm">
+      <div class="uploadImage">
+        <mat-label>Select Image</mat-label> <br>
+        <input type="file" id="myfile" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" required>
+      </div>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" required [(ngModel)]="name" type="text">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput name="address" required [(ngModel)]="address" type="text">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Mobile</mat-label>
+        <input matInput name="mobile" required [(ngModel)]="mobile" type="text">
+      </mat-form-field>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" required [(ngModel)]="email" type="text">
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+          (click)="onSubmit()">Add</button>
+      </mat-dialog-actions>
+    </form>
+  </mat-dialog-content>
+</ng-template>
+<!-- Dialog End  -->
 <mat-accordion>
-  <h3>Users:</h3>
-    <mat-expansion-panel *ngFor="let user of users">
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{user.id}}- Name: {{user.name}}</mat-panel-title>
-          <mat-panel-description>
-            {{user.address}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <img src="../../assets/image/{{user.image}}.jpg" alt="">
-        <p>{{user.contact}}</p>
-        <p>{{user.email}}</p>
-        <mat-action-row>
-          <button mat-raised-button>Enroll</button>
-        </mat-action-row>
-      </mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Name: {{user.name}}</mat-panel-title>
+      <mat-panel-description>
+        Address: {{user.address}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <img src="{{user.image}}" alt="image" style="width: 120px; height: 120px;">
+    <p>Mobile: {{user.mobile}}</p>
+    <p>Email: {{user.email}}</p>
+    <mat-action-row>
+      <button mat-raised-button color='primary' (click)="onOperDialog(editUser)">Edit</button>
+      <button mat-raised-button color="warn" (click)="onDeleteUser(user)">Delete</button>
+    </mat-action-row>
+
+    <!-- Dialog Edit User -->
+    <ng-template #editUser>
+      <h2 matDialogTitle>Edit Users</h2>
+      <mat-dialog-content>
+        <form #customeForm="ngForm">
+
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" required [(ngModel)]="user.name" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput name="address" required [(ngModel)]="user.address" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput name="mobile" required [(ngModel)]="user.mobile" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" required [(ngModel)]="user.email" type="text">
+          </mat-form-field>
+          <mat-dialog-actions align="end">
+            <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+              (click)="onUpdate(user)">Update</button>
+          </mat-dialog-actions>
+        </form>
+      </mat-dialog-content>
+    </ng-template>
+    <!-- Dialog End  -->
+  </mat-expansion-panel>
+
 </mat-accordion>

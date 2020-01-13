@@ -5,8 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
@@ -30,6 +34,8 @@ import { FilterPipe } from './filter.pipe';
 import { HospitalService } from './services/hospitalService/hospital.service';
 import { UsersComponent } from './users/users.component';
 import { UserService } from './services/userService/user.service';
+import { MyProductComponent } from './my-product/my-product.component';
+import { CatagoryService } from './services/shopService/catagory.service';
 
 
 @NgModule({
@@ -48,14 +54,19 @@ import { UserService } from './services/userService/user.service';
     AppointmentListComponent,
     LiveAppointmentComponent,
     FilterPipe,
-    UsersComponent
+    UsersComponent,
+    MyProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule
+    ReactiveFormsModule,
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [
     ShopService,
@@ -65,7 +76,8 @@ import { UserService } from './services/userService/user.service';
     AppointmentService,
     AmbulanceService,
     HospitalService,
-    UserService
+    UserService,
+    CatagoryService
   ],
   bootstrap: [AppComponent]
 })

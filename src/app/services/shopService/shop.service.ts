@@ -1,78 +1,26 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class ShopService {
-  shops = [
-    {
-      id: 1,
-      name: 'Azhar Store',
-      address: 'fajdkfl 12135 3rjfk',
-      contact: '01*********',
-      products: [
-        {
-          id: 1,
-          quantity: 23
-        },
-        {
-          id: 2,
-          quantity: 23
-        },
-        {
-          id: 3,
-          quantity: 23
-        },
-        {
-          id: 4,
-          quantity: 23
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Sadi Store',
-      address: 'A good store',
-      contact: '01*********',
-      products: [
-        {
-          id: 5,
-          quantity: 23
-        },
-        {
-          id: 6,
-          quantity: 23
-        },
-        {
-          id: 7,
-          quantity: 23
-        },
-        {
-          id: 8,
-          quantity: 23
-        }
-      ]
-    },
-    {
-      id: 3,
-      name: 'Srirampur House',
-      address: 'It is a shop where tapu sits',
-      contact: '01*********',
-      products: [
-        {
-          id: 9,
-          quantity: 23
-        },
-        {
-          id: 10,
-          quantity: 23
-        },
-        {
-          id: 11,
-          quantity: 23
-        },
-        {
-          id: 12,
-          quantity: 23
-        }
-      ]
-    }
-  ];
+  constructor(private firestore: AngularFirestore) { }
+  getShop() {
+    return this.firestore.collection("users", ref => ref.where('type', '==', '3')).get();
+  }
+  
+  addShop(data) {
+    return new Promise<any>((resolve, reject) => {
+      const firestoreDoc = this.firestore.collection("users").ref.doc();
+      data.id = firestoreDoc.id;
+      firestoreDoc.set(data);
+    });
+  }
+
+  editShop(data) {
+    this.firestore.collection('users').doc(data.id).update(data);
+  }
+  deleteShop(data) {
+    return this.firestore.collection("users").doc(data).delete();
+  }
 
 }

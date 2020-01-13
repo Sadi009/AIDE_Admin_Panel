@@ -5,3 +5,6 @@ mat-form-field {
   width: 500px;
 }
 
+mat-grid-tile {
+  background-color: lightblue;
+}

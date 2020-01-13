@@ -1,0 +1,13 @@
+mat-form-field {
+  width: 80%;
+}
+.uploadImage input {
+  width: 80% ;
+  padding: 15px 5px;
+}
+.addButton {
+  margin-right: 10px;
+}
+mat-expansion-panel img {
+  width: 150px;
+}

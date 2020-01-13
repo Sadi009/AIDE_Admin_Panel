@@ -1,16 +1,62 @@
 <h3>Doctor List</h3>
+<button class="addButton" mat-raised-button color="accent"  (click)="onOperDialog(addDorctor)">Add Doctor</button>
+<mat-form-field floatLabel="auto">
+  <mat-label><i class="material-icons">search</i></mat-label>
+  <input matInput type="text" name="search" placeholder="Search">
+</mat-form-field>
+<!-- Dialog Add Doctor -->
+  <ng-template #addDorctor>
+    <h2 matDialogTitle>Add Doctor</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+          <div class="uploadImage">
+            <mat-label>Select Image</mat-label> <br>
+            <input type="file" id="myfile" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" required>
+          </div>
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+            name="name"
+            required
+              [(ngModel)] = "name"
+              type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Hospital Address</mat-label>
+              <input matInput
+              name="address"
+              required
+                [(ngModel)] = "address"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput
+                name="description"
+                required
+                  [(ngModel)] = "description"
+                  type="text">
+              </mat-form-field>
+
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onSubmit()">Add Doctor</button>
+                </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
 <mat-accordion>
     <mat-expansion-panel *ngFor="let doctor of doctors">
-        <mat-expansion-panel-header (click)="getChamber(doctor.id)">
+        <mat-expansion-panel-header  (click)="onExpansion(doctor.id)">
           <mat-panel-title>Name: {{doctor.name}}</mat-panel-title>
           <mat-panel-description>
-            {{doctor.hospitalAddress}}
+            Address: {{doctor.address}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-grid-list cols="3" rowHeight="100px" gutterSize="10px">
             <mat-grid-tile rowspan="2">
               <div class="doctorImg">
-                <img src="../../../assets/image/{{doctor.image}}.png" alt="Doctor Image">
+                <img src="{{doctor.image}}" alt="Doctor Image" style="width: 150px;">
               </div>
             </mat-grid-tile>
             <mat-grid-tile colspan="2">
@@ -19,15 +65,182 @@
           </mat-grid-list>
           <br>
           <h4>Chambers</h4>
+          <button class="addButton" mat-raised-button color="accent"  (click)="onOperDialog(addChamber)">Add Chamber</button>
+           <!-- Dialog add chamber -->
+  <ng-template #addChamber>
+    <h2 matDialogTitle>Add Chamber</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+            name="chamberName"
+            required
+              [(ngModel)] = "chamberName"
+              type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Chamber Address</mat-label>
+              <input matInput
+              name="chamberAdderss"
+              required
+                [(ngModel)] = "chamberAdderss"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput
+                name="mobile"
+                required
+                  [(ngModel)] = "mobile"
+                  type="text">
+              </mat-form-field>
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Schedule: {{schedule}}</mat-label>
+              <mat-select [(value)]="schedule" multiple>
+              <mat-option>None</mat-option>
+              <mat-optgroup label="days">
+                  <mat-option value="Saturday">Sat</mat-option>
+                  <mat-option value="Sunday">Sun</mat-option>
+                  <mat-option value="Monday">Mon</mat-option>
+                  <mat-option value="Tuesday">Tues</mat-option>
+                  <mat-option value="Wednesday">Wed</mat-option>
+                  <mat-option value="Thursday">Thurs</mat-option>
+                  <mat-option value="Friday">Fri</mat-option>
+              </mat-optgroup>
+            </mat-select>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Time</mat-label>
+                <input matInput
+                name="time"
+                required
+                  [(ngModel)] = "time"
+                  type="text">
+              </mat-form-field>
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)='onSubmitChamber()'>Add Chamber</button>
+                </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
           <mat-accordion>
             <mat-expansion-panel *ngFor="let chamber of chambers">
                 <mat-expansion-panel-header>
-                  <mat-panel-title>Name: {{chamber.name}} </mat-panel-title>
+                  <mat-panel-title>Name: {{chamber.chamberName}} </mat-panel-title>
                   <mat-panel-description>
                     Address: {{chamber.chamberAddress}}
                   </mat-panel-description>
                 </mat-expansion-panel-header>
+                <p>Mobile: {{chamber.mobile}}</p>
+                <p>Schedule: {{chamber.schedule}}</p>
+                <p>Time: {{chamber.time}}</p>
+                <mat-action-row>
+                  <button mat-raised-button color='primary' (click)="onOperDialog(editChamber)">Edit</button>
+                  <button mat-raised-button color="warn" (click)="onDeleteChamber(chamber)">Delete</button>
+                </mat-action-row>
+    <!-- Dialog edit chamber -->
+  <ng-template #editChamber>
+    <h2 matDialogTitle>Edit Chamber</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+            name="chamberName"
+            required
+              [(ngModel)] = "chamber.chamberName"
+              type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Chamber Address</mat-label>
+              <input matInput
+              name="chamberAdderss"
+              required
+                [(ngModel)] = "chamber.chamberAddress"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput
+                name="mobile"
+                required
+                  [(ngModel)] = "chamber.mobile"
+                  type="text">
+              </mat-form-field>
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Schedule: {{chamber.schedule}}</mat-label>
+              <mat-select [(value)]="chamber.schedule" multiple>
+              <mat-option>None</mat-option>
+              <mat-optgroup label="days">
+                  <mat-option value="Saturday">Sat</mat-option>
+                  <mat-option value="Sunday">Sun</mat-option>
+                  <mat-option value="Monday">Mon</mat-option>
+                  <mat-option value="Tuesday">Tues</mat-option>
+                  <mat-option value="Wednesday">Wed</mat-option>
+                  <mat-option value="Thursday">Thurs</mat-option>
+                  <mat-option value="Friday">Fri</mat-option>
+              </mat-optgroup>
+            </mat-select>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Time</mat-label>
+                <input matInput
+                name="time"
+                required
+                  [(ngModel)] = "chamber.time"
+                  type="text">
+              </mat-form-field>
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onUpdateChamber(chamber)">Update Chamber</button>
+                </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
               </mat-expansion-panel>
             </mat-accordion>
+            <mat-action-row>
+              <button mat-raised-button color='primary' (click)="onOperDialog(editDorctor)">Edit</button>
+              <button mat-raised-button color="warn" (click)="onDeleteDoctor(doctor)">Delete</button>
+            </mat-action-row>
+            <!-- Dialog Edit Doctor -->
+  <ng-template #editDorctor>
+    <h2 matDialogTitle>Edit Doctor</h2>
+    <mat-dialog-content>
+        <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput
+            name="name"
+            required
+              [(ngModel)] = "doctor.name"
+              type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Hospital Address</mat-label>
+              <input matInput
+              name="address"
+              required
+                [(ngModel)] = "doctor.address"
+                type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput
+                name="description"
+                required
+                  [(ngModel)] = "doctor.description"
+                  type="text">
+              </mat-form-field>
+
+              <mat-dialog-actions align="end">
+                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onUpdate(doctor)">Update Doctor</button>
+                </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+  </ng-template>
+<!-- Dialog End  -->
       </mat-expansion-panel>
 </mat-accordion>

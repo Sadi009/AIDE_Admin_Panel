@@ -1,5 +1,5 @@
 <div class="home">
-  <mat-grid-list cols="4" rowHeight="20vh" gutterSize="10px" class="gridList">
+  <mat-grid-list cols="4" rowHeight="120px" gutterSize="10px" class="gridList">
     <mat-grid-tile>
       <a  routerLink="/shop">
         <mat-card class="matCard">
@@ -50,7 +50,7 @@
     </mat-grid-tile>
 
   </mat-grid-list>
-  <mat-grid-list cols="3" rowHeight="2:1" gutterSize="10px">
+  <mat-grid-list cols="3" rowHeight="160px" gutterSize="10px">
     <mat-grid-tile>
           <mat-card class="innerCard">
               <mat-card-title>Profit</mat-card-title>
@@ -82,26 +82,18 @@
             </mat-card-content>
           </mat-card>
         </a>
-        <!-- <mat-card class="userCard">
-            <mat-card-title>Users</mat-card-title>
-            <mat-card-content>
-              <div>
-                  <mat-progress-spinner strokeWidth="20" [diameter]="150" value="90"></mat-progress-spinner>
-              </div>
-            </mat-card-content>
-          </mat-card> -->
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="innerCard">
-            <mat-card-title>Sales</mat-card-title>
-            <mat-card-content>
-              <div>
-                <mat-progress-spinner strokeWidth="10" [diameter]="70" value="60"></mat-progress-spinner>
-              </div>
-            </mat-card-content>
-          </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <mat-card class="innerCard">
+                  <mat-card-title>Sales</mat-card-title>
+                  <mat-card-content>
+                    <div>
+                      <mat-progress-spinner strokeWidth="10" [diameter]="70" value="60"></mat-progress-spinner>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
         <mat-card class="innerCard">
             <mat-card-title>Customer</mat-card-title>
             <mat-card-content>

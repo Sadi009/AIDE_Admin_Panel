@@ -1,43 +1,43 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class DoctorListService {
-  doctors = [
-    {
-      id: 1,
-      name: 'Dr. Faruk',
-      image: 'dr1',
-      hospitalAddress: 'Osmani Hospital',
-      description: 'Lorem  amet consectlestias a magni numquam vitae quae odio amet dolore rerum!',
-      chambers: [
-        {
-          id: 1,
-          name: 'Chamber 1.1',
-          chamberAddress: '123/df hawapara'
-        },
-        {
-          id: 2,
-          name: 'Chamber 1.2',
-          chamberAddress: '123/df hawapara'
-        },
-        {
-          id: 2,
-          name: 'Chamber 1.3',
-          chamberAddress: '123/df hawapara'
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Dr. Omer',
-      image: 'dr2',
-      hospitalAddress: 'North-East Hospital',
-      description: 'Lorem  amet consectlestias a magni numquam vitae quae odio amet dolore rerum!',
-      chambers: [
-        {
-          id: 1,
-          name: 'Chamber 2.1',
-          chamberAddress: '123/df hawapara'
-        }
-      ]
-    }
-  ];
+  constructor(private firestore: AngularFirestore) { }
+//  Doctors database
+getDoctors() {
+    return this.firestore.collection("users", ref => ref.where('type', '==', '2')).get();
+  }
+  addDoctor(data) {
+    return new Promise<any>((resolve, reject) => {
+      const firestoreDoc = this.firestore.collection("users").ref.doc();
+      data.id = firestoreDoc.id;
+      firestoreDoc.set(data);
+    });
+  }
+  
+  editDoctor(data){
+    this.firestore.collection('users').doc(data.id).update(data);
+  }
+  deleteDoctor(data) {
+    return this.firestore.collection("users").doc(data).delete();
+  }
+  // chambers database
+  getChambers(id) {
+    return this.firestore.collection("chambers", ref => ref.where('doctor_id', '==', id)).get();
+  }
+  addChamber(data) {
+    return new Promise<any>((resolve, reject) => {
+      const firestoreDoc = this.firestore.collection("chambers").ref.doc();
+      data.id = firestoreDoc.id;
+      firestoreDoc.set(data);
+    });
+  }
+  
+  editChamber(data){
+    this.firestore.collection('chambers').doc(data.id).update(data);
+  }
+  deleteChamber(data) {
+    return this.firestore.collection("chambers").doc(data).delete();
+  }
 }

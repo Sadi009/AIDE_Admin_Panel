@@ -25,8 +25,8 @@ export class ShopComponent implements OnInit {
           link: './catagory',
           index: 2
       }, {
-        label: 'Create Order',
-        link: './create-order',
+        label: 'Create Product',
+        link: './create-product',
         index: 3
     }
     ];

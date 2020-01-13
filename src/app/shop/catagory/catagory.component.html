@@ -1,29 +1,62 @@
 <h3>Catagories</h3>
+<mat-form-field floatLabel="auto">
+  <mat-label><i class="material-icons">search</i></mat-label>
+  <input matInput type="text" name="search" placeholder="Search">
+</mat-form-field>
 <mat-list>
     <div>
-        <button mat-raised-button color="accent">Add Catagroy</button>
+        <button mat-raised-button color="accent" (click)="onOpenDialog(addCatagory)">Add Catagroy</button>
       </div>
-  <mat-list-item *ngFor="let catagory of catagories">
-    <h3 matLine>{{catagory.name}}</h3>
-    <div>
-      <button mat-raised-button color="primary" (click)=onEdit(myDialog)>Edit</button>
-    </div>
-    <div>
-      <button mat-raised-button color="warn">Delete</button>
-    </div>
-    <mat-divider></mat-divider>
-    <ng-template #myDialog>
-        <h2 matDialogTitle>Catagory</h2>
+      <!-- Add Catagroy Model  -->
+    <ng-template #addCatagory>
+      <h2 matDialogTitle>Catagory</h2>
+      <form #customeForm="ngForm">
         <mat-dialog-content>
           <mat-form-field floatLabel="auto" appearance="outline">
             <mat-label>Catagroy Name</mat-label>
-            <input matInput value="{{catagory.name}}">
+            <input matInput name="name" required [(ngModel)]="name" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Module</mat-label>
+            <input matInput name="module" required [(ngModel)]="module" type="text">
           </mat-form-field>
         </mat-dialog-content>
         <mat-dialog-actions align="end">
-          <button mat-button matDialogClose color="primary">Edit</button>
+          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onSubmit()">Add</button>
         </mat-dialog-actions>
+      </form>
+    </ng-template>
+    <!-- End add catagory model  -->
+  <mat-list-item *ngFor="let catagory of catagories">
+    <h3 matLine>Name: {{catagory.name}}</h3>
+    <p matLine>Module: {{catagory.module}}</p>
+    <div>
+      <button mat-raised-button color="primary" (click)="onOpenDialog(editCatagory)">Edit</button>
+    </div>
+    <div>
+      <button mat-raised-button color="warn" (click)="onDeleteCatagory(catagory)">Delete</button>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Edit Catagroy Model  -->
+    <ng-template #editCatagory>
+        <h2 matDialogTitle>Catagory</h2>
+        <form #customeForm="ngForm">
+          <mat-dialog-content>
+            <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Catagroy Name</mat-label>
+              <input matInput name="name" required [(ngModel)]="catagory.name" type="text">
+            </mat-form-field>
+            <mat-form-field floatLabel="auto" appearance="outline">
+              <mat-label>Module</mat-label>
+              <input matInput name="module" required [(ngModel)]="catagory.module" type="text">
+            </mat-form-field>
+          </mat-dialog-content>
+          <mat-dialog-actions align="end">
+            <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onUpdate(catagory)">Edit</button>
+          </mat-dialog-actions>
+        </form>
       </ng-template>
+      <!-- End edit catagory model  -->
   </mat-list-item>
 </mat-list>
 <!-- Dialog  -->

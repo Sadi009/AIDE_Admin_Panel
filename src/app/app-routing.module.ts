@@ -10,6 +10,7 @@ import { OrderDetailsComponent } from './shop/order-details/order-details.compon
 import { CatagoryComponent } from './shop/catagory/catagory.component';
 import { CreateOrderComponent } from './shop/create-order/create-order.component';
 import { UsersComponent } from './users/users.component';
+import { MyProductComponent } from './my-product/my-product.component';
 
 
 const routes: Routes = [
@@ -20,8 +21,9 @@ const routes: Routes = [
     { path: 'product-details', component: ProductDetaislComponent },
     { path: 'order-details', component: OrderDetailsComponent },
     { path: 'catagory', component: CatagoryComponent },
-    { path: 'create-order', component: CreateOrderComponent }
+    { path: 'create-product', component: CreateOrderComponent }
   ] },
+  { path: 'my-products', component: MyProductComponent },
   { path: 'doctor', component: DoctorComponent },
   { path: 'ambulance', component: AmbulanceComponent },
   { path: 'hospital', component: HospitalComponent },

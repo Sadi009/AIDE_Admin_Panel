@@ -1,24 +1,73 @@
-<h3>Hospitals</h3>
+<h3>Hospital</h3>
 <mat-list>
-    <mat-grid-list cols="4" rowHeight="100px" gutterSize="10px">
-        <mat-grid-tile>
-            <button mat-raised-button color="accent">Add Hospitals</button>
-        </mat-grid-tile>
-        <mat-grid-tile>
+  <button mat-raised-button color="accent" (click)="onAddHospital(hospital)">Add Hospital</button>
+  <!-- Dialog  -->
+  <ng-template #hospital>
+    <h2 matDialogTitle>Add Hospital!</h2>
+    <mat-dialog-content>
+      <form #customeForm="ngForm">
+        <div class="uploadImage">
+          <mat-label>Select Image</mat-label> <br>
+          <input type="file" id="myfile" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" required>
+        </div>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" required [(ngModel)]="name" type="text">
+        </mat-form-field>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput name="address" required [(ngModel)]="address" type="text">
+        </mat-form-field>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Mobile</mat-label>
+          <input matInput name="mobile" required [(ngModel)]="mobile" type="text">
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+            (click)="onSubmit()">Add</button>
+        </mat-dialog-actions>
+      </form>
+
+    </mat-dialog-content>
+  </ng-template>
+  <!-- Dialog End  -->
+  <mat-form-field floatLabel="auto">
+    <mat-label><i class="material-icons">search</i></mat-label>
+    <input matInput type="text" name="search" placeholder="Search">
+  </mat-form-field>
+  <mat-list-item *ngFor="let hospital of hospitals">
+        <img matLine src="{{hospital.image}}" alt="image" style="width: 100px; height: 100px;">
+        <h3 matLine>Name: {{hospital.name}}</h3>
+        <p matLine>Address: {{hospital.address}}</p>
+        <p matLine>Mobile: {{hospital.mobile}}</p>
+    <button mat-raised-button color="primary" (click)="onEditHospital(editHospital)">Edit</button>
+    <button mat-raised-button color="warn" (click)="onDeleteHospital(hospital)">Delete</button>
+    <!-- Dialog  -->
+    <ng-template #editHospital>
+      <h2 matDialogTitle>Edit Hospital!</h2>
+      <mat-dialog-content>
+        <form #customeForm="ngForm">
           <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput type="text" name="search" [(ngModel)]="searchText">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" required [(ngModel)]="hospital.name" type="text">
           </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput name="address" required [(ngModel)]="hospital.address" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput name="mobile" required [(ngModel)]="hospital.mobile" type="text">
+          </mat-form-field>
+          <mat-dialog-actions align="end">
+            <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+              (click)="onUpdate(hospital)">Update</button>
+          </mat-dialog-actions>
+        </form>
 
-
-  <mat-list-item *ngFor="let hospital of hospitals | filter: {name: searchText};">
-    <h3 matLine>Name: {{hospital.name}}</h3>
-    <p matLine>Address: {{hospital.address}}</p>
-    <p matLine>Contact: {{hospital.contact}}</p>
-    <button mat-raised-button color="primary">Edit</button>
-    <button mat-raised-button color="warn">Delete</button>
+      </mat-dialog-content>
+    </ng-template>
+    <!-- Dialog End  -->
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>

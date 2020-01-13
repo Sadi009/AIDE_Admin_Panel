@@ -1,9 +1,26 @@
 <div class="creat-order">
-    <h3>Creat orders</h3>
-    <div class="uploadImage">
-        <h5>Select Image</h5>
-        <span><input type="file" id="myfile" name="myfile"></span>
-    </div>
+    <h3>Creat Product</h3>
+    <mat-grid-list cols="3" gutterSize="10px">
+      <mat-grid-tile>
+        <div class="uploadImage">
+          <h5>Select Image 1</h5>
+          <span><input type="file" id="myfile1" name="myfile1"></span>
+      </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="uploadImage">
+          <h5>Select Image 2</h5>
+          <span><input type="file" id="myfile2" name="myfile2"></span>
+      </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="uploadImage">
+          <h5>Select Image 3</h5>
+          <span><input type="file" id="myfile3" name="myfile3"></span>
+      </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    
       <mat-form-field floatLabel="auto" appearance="outline">
         <mat-label>Product Name</mat-label>
         <input matInput required>

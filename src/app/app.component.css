@@ -3,7 +3,8 @@ mat-sidenav-container {
 }
 .navbar {
   justify-content: space-between;
-  background-color: #fff;
+  /* background-color: #3171e0; */
+  background: linear-gradient(125deg, rgba(49,113,224,1) 66%, rgba(56,128,255,1) 66%);
   box-shadow: 2px 2px 7px #000;
 }
 .outlet {
@@ -14,7 +15,9 @@ mat-sidenav {
   /* background-image: url(../assets/image/bg1.jpg);
   background-repeat: no-repeat;
   background-size: cover; */
-  background-color: rgba(0, 0, 0, 0.829);
+  /* background-color: rgba(0, 0, 0, 0.829); */
+  /* background-color: #3880ff; */
+  background: linear-gradient(125deg, rgba(49,113,224,1) 66%, rgba(56,128,255,1) 66%);
   width: 200px;
   padding-top: 15px;
 }
@@ -25,7 +28,7 @@ mat-sidenav {
 .sideNav a {
   font-size: 19px;
   font-weight: bold;
-  text-shadow: 2px 2px 4px #ff0000;
+  text-shadow: 2px 2px 4px #000;
   color: #fff;
   font-family: Open Sans;
 }
@@ -40,10 +43,9 @@ mat-sidenav {
   color: #fff !important;
   text-shadow: 2px 2px 4px #000 !important;
   padding-left: 45px !important;
+  overflow: hidden;
+  box-shadow: 2px 2px 7px #000;
 }
 mat-divider {
-  background-color: #fff;
-}
-.mat-tab-labels {
   background-color: #fff;
 }
