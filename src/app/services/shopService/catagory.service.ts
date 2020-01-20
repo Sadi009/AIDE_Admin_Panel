@@ -6,7 +6,6 @@ export class CatagoryService {
     constructor(private firestore: AngularFirestore) { }
 
     getCatagory() {
-        console.log('hello')
         return this.firestore.collection("catagory").get();
     }
     addCatagory(data) {

@@ -12,6 +12,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
+import { SliderModule } from 'angular-image-slider';
+import { NgImageSliderModule } from 'ng-image-slider';
+
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
 import { DoctorComponent } from './doctor/doctor.component';
@@ -36,6 +39,8 @@ import { UsersComponent } from './users/users.component';
 import { UserService } from './services/userService/user.service';
 import { MyProductComponent } from './my-product/my-product.component';
 import { CatagoryService } from './services/shopService/catagory.service';
+import { MyProductService } from './services/myProductService/myProductService';
+import { CreateOrderService } from './services/shopService/create-order.service';
 
 
 @NgModule({
@@ -66,7 +71,9 @@ import { CatagoryService } from './services/shopService/catagory.service';
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    SliderModule,
+    NgImageSliderModule
   ],
   providers: [
     ShopService,
@@ -77,7 +84,9 @@ import { CatagoryService } from './services/shopService/catagory.service';
     AmbulanceService,
     HospitalService,
     UserService,
-    CatagoryService
+    CatagoryService,
+    MyProductService,
+    CreateOrderService
   ],
   bootstrap: [AppComponent]
 })

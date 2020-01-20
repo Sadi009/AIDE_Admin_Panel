@@ -6,7 +6,6 @@ export class OrderDetailsService {
   constructor(private firestore: AngularFirestore) { }
 
   getOrders() {
-    console.log('hi')
     return this.firestore.collection("orders").get();
   }
   getUser(id) {
