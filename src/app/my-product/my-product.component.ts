@@ -14,16 +14,8 @@ export class MyProductComponent implements OnInit {
   constructor(private myProductService: MyProductService) { }
 
   ngOnInit() {
-    this.getCatagory();
     this.getMyProducts();
    }
-  getCatagory() {
-    this.myProductService.getCatagory().subscribe(res => {
-      res.forEach(result => {
-        this.catagories.push(result.data());
-      });
-    });
-  }
   getMyProducts() {
     this.myProductService.getMyProduct().subscribe(res => {
       res.forEach(result => {

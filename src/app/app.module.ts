@@ -41,6 +41,7 @@ import { MyProductComponent } from './my-product/my-product.component';
 import { CatagoryService } from './services/shopService/catagory.service';
 import { MyProductService } from './services/myProductService/myProductService';
 import { CreateOrderService } from './services/shopService/create-order.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { CreateOrderService } from './services/shopService/create-order.service'
     LiveAppointmentComponent,
     FilterPipe,
     UsersComponent,
-    MyProductComponent
+    MyProductComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,6 @@ import { Injectable } from '@angular/core';
 export class MyProductService {
   constructor(private firestore: AngularFirestore) { }
 
-  getCatagory() {
-      return this.firestore.collection("catagory").get();
-  }
   getMyProduct() {
       return this.firestore.collection("my_products").get()
   }

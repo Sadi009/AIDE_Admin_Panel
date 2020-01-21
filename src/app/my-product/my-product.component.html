@@ -1,8 +1,4 @@
 <div class="my_product">
-  
-  <button mat-raised-button color="primary" *ngFor="let catagory of catagories" (click)="onClickTab(catagory.id)">
-    {{catagory.name}}
-  </button>
   <mat-grid-list cols="4" rowHeight="2:4" gutterSize="10px">
     <mat-grid-tile *ngFor="let my_product of my_products">
       <div> 
@@ -10,13 +6,13 @@
           <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Name: {{my_product.name}}</mat-card-title>
-            <mat-card-subtitle>Price: {{my_product.price}}</mat-card-subtitle>
+            <mat-card-subtitle>Catagory: {{my_product.catagory_name}}</mat-card-subtitle>
           </mat-card-header>
           <div class="img">
             <img mat-card-image src="{{my_product.image}}" alt="Photo">
           </div>
           <mat-card-content>
-            <p>Description: {{my_product.description}} </p>
+            <p>Price: {{my_product.price}}</p>
             <p>Quantity: {{my_product.quantity}}</p>
             <button mat-raised-button color="warn" (click)="onDelete(my_product)">Delete</button>
           </mat-card-content>

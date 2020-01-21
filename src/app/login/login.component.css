@@ -1,0 +1,9 @@
+mat-card {
+    width: 350px;
+    padding: 50px;
+    margin: auto;
+  }
+mat-card-title {
+    text-align: center !important;
+} 
+  

@@ -80,7 +80,7 @@ export class UsersComponent implements OnInit {
     const data = {
       name: this.name,
       image: this.imgUrl,
-      type: '1',
+      type: this.type,
       is_login: true,
       status: true,
       address: this.address,
@@ -96,6 +96,7 @@ export class UsersComponent implements OnInit {
     this.address = "";
     this.mobile = "";
     this.email = "";
+    this.type = "";
   }
   onUpdate(data) {
     console.log(data);
@@ -104,10 +105,11 @@ export class UsersComponent implements OnInit {
     this.address = "";
     this.mobile = "";
     this.email = "";
+    this.type = "";
   }
 
   onDeleteUser(data) {
-    this.userService.deleteUser(data.id);
+    this.userService.deleteUser(data);
     const index = this.users.indexOf(data);
     this.users.splice(index, 1);
     console.log(data.id);

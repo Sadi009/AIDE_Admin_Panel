@@ -29,6 +29,10 @@
         <mat-label>Email</mat-label>
         <input matInput name="email" required [(ngModel)]="email" type="text">
       </mat-form-field>
+      <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput name="type" required [(ngModel)]="type" type="text">
+      </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
           (click)="onSubmit()">Add</button>
@@ -48,6 +52,7 @@
     <img src="{{user.image}}" alt="image" style="width: 120px; height: 120px;">
     <p>Mobile: {{user.mobile}}</p>
     <p>Email: {{user.email}}</p>
+    <p>Type: {{user.type}}</p>
     <mat-action-row>
       <button mat-raised-button color='primary' (click)="onOperDialog(editUser)">Edit</button>
       <button mat-raised-button color="warn" (click)="onDeleteUser(user)">Delete</button>
@@ -74,6 +79,10 @@
           <mat-form-field floatLabel="auto" appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput name="email" required [(ngModel)]="user.email" type="text">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Type</mat-label>
+            <input matInput name="type" required [(ngModel)]="user.type" type="text">
           </mat-form-field>
           <mat-dialog-actions align="end">
             <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
