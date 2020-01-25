@@ -6,7 +6,7 @@ export class DoctorListService {
   constructor(private firestore: AngularFirestore) { }
 //  Doctors database
 getDoctors() {
-    return this.firestore.collection("users", ref => ref.where('type', '==', '2')).get();
+    return this.firestore.collection("users", ref => ref.where('type', '==', 'Doctor')).get();
   }
   addDoctor(data) {
     return new Promise<any>((resolve, reject) => {

@@ -62,7 +62,7 @@ export class DoctorListComponent implements OnInit {
     const data = {
       name: this.name,
       image: this.imgUrl,
-      type: '2',
+      type: 'Doctor',
       is_login: true,
       status: true,
       address: this.address,

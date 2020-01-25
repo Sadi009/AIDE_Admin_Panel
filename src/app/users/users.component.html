@@ -30,9 +30,19 @@
         <input matInput name="email" required [(ngModel)]="email" type="text">
       </mat-form-field>
       <mat-form-field floatLabel="auto" appearance="outline">
+        <mat-label>Type: {{type}}</mat-label>
+        <mat-select [(value)]="type">
+          <mat-optgroup label="type">
+            <mat-option value="Shop Owner">Shop Owner</mat-option>
+            <mat-option value="Doctor">Doctor</mat-option>
+            <mat-option value="General User">General User</mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field floatLabel="auto" appearance="outline">
         <mat-label>Type</mat-label>
         <input matInput name="type" required [(ngModel)]="type" type="text">
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-dialog-actions align="end">
         <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
           (click)="onSubmit()">Add</button>
@@ -81,8 +91,14 @@
             <input matInput name="email" required [(ngModel)]="user.email" type="text">
           </mat-form-field>
           <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Type</mat-label>
-            <input matInput name="type" required [(ngModel)]="user.type" type="text">
+            <mat-label>Type: {{user.type}}</mat-label>
+            <mat-select [(value)]="user.type">
+              <mat-optgroup label="type">
+                <mat-option value="Shop Owner">Shop Owner</mat-option>
+                <mat-option value="Doctor">Doctor</mat-option>
+                <mat-option value="General User">General User</mat-option>
+              </mat-optgroup>
+            </mat-select>
           </mat-form-field>
           <mat-dialog-actions align="end">
             <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"

@@ -35,7 +35,7 @@ export class ProductDetaislComponent implements OnInit {
   onSubmit() {
     const data = {
       name: this.name,
-      type: '3',
+      type: 'Shop Owner',
       is_login: true,
       status: true,
       address: this.address,

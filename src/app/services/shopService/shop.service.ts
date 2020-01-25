@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class ShopService {
   constructor(private firestore: AngularFirestore) { }
   getShop() {
-    return this.firestore.collection("users", ref => ref.where('type', '==', '3')).get();
+    return this.firestore.collection("users", ref => ref.where('type', '==', 'Shop Owner')).get();
   }
   
   addShop(data) {
