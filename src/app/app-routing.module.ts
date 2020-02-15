@@ -14,6 +14,8 @@ import { CatagoryComponent } from './shop/catagory/catagory.component';
 import { CreateOrderComponent } from './shop/create-order/create-order.component';
 import { UsersComponent } from './users/users.component';
 import { MyProductComponent } from './my-product/my-product.component';
+import { DiagonosticCenterComponent } from './diagonostic-center/diagonostic-center.component';
+import { DiagonosticCenterDetailsComponent } from './diagonostic-center/diagonostic-center-details/diagonostic-center-details.component';
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   ] },
   { path: 'my-products', component: MyProductComponent },
   { path: 'doctor', component: DoctorComponent },
+  { path: 'diagonostic-center', component: DiagonosticCenterComponent },
+  { path: 'diagonostic-center-details', component: DiagonosticCenterDetailsComponent },
   { path: 'ambulance', component: AmbulanceComponent },
   { path: 'hospital', component: HospitalComponent },
   { path: 'users', component: UsersComponent }

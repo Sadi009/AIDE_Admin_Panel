@@ -1,9 +1,9 @@
-<h3>Hospital</h3>
+<h3>Diagonostic Center</h3>
 <mat-list>
-  <button mat-raised-button color="accent" (click)="onAddHospital(hospital)">Add Hospital</button>
-  <!-- Dialog  -->
-  <ng-template #hospital>
-    <h2 matDialogTitle>Add Hospital!</h2>
+  <button mat-raised-button color="accent" (click)="onOpenModel(diagonosticCenter)">Add Diagnostic Center</button>
+  <!-- Dialog Add Diagnostic  -->
+  <ng-template #diagonosticCenter>
+    <h2 matDialogTitle>Add Diagnostic Center!</h2>
     <mat-dialog-content>
       <form #customeForm="ngForm">
         <div class="uploadImage">
@@ -20,7 +20,7 @@
         </mat-form-field>
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Mobile</mat-label>
-          <input matInput name="mobile" required [(ngModel)]="mobile" type="text">
+          <input matInput name="contact" required [(ngModel)]="contact" type="text">
         </mat-form-field>
         <mat-dialog-actions align="end">
           <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
@@ -35,39 +35,40 @@
     <mat-label><i class="material-icons">search</i></mat-label>
     <input matInput type="text" name="search" placeholder="Search">
   </mat-form-field>
-  <mat-list-item *ngFor="let hospital of hospitals">
-        <mat-list-item class="flex">
-          <div style="margin-right: 20px;">
-            <img matLine src="{{hospital.image}}" alt="image" style="width: 100px; height: 100px;">
-          </div>
-          <div>
-            <h3 matLine>Name: {{hospital.name}}</h3>
-          <p matLine>Address: {{hospital.address}}</p>
-          <p matLine>Mobile: {{hospital.mobile}}</p>
-          </div>
-        </mat-list-item>
-    <button mat-raised-button color="primary" (click)="onEditHospital(editHospital)">Edit</button>
-    <button mat-raised-button color="warn" (click)="onDeleteHospital(hospital)">Delete</button>
-    <!-- Dialog  -->
-    <ng-template #editHospital>
-      <h2 matDialogTitle>Edit Hospital!</h2>
+  <mat-list-item *ngFor="let diagonosticCenter of diagonostic_center_List">
+    <mat-list-item [routerLink]="['/diagonostic-center-details', {id: diagonosticCenter.id}]" style="cursor: pointer;" class="flex">
+      <div style="margin-right: 20px;">
+        <img matLine src="{{diagonosticCenter.image}}" alt="" style="width: 100px; height: 100px;">
+      </div>
+      <div>
+        <h3 matLine>Name: {{diagonosticCenter.name}}</h3>
+        <p matLine>Address: {{diagonosticCenter.address}}</p>
+        <p matLine>Mobile: {{diagonosticCenter.contact}}</p>
+      </div>
+    </mat-list-item>
+
+    <button mat-raised-button color="primary" (click)="onOpenModel(editDiagonosticCenter)">Edit</button>
+    <button mat-raised-button color="warn" (click)="onDeleteDiagnosticCenter(diagonosticCenter)">Delete</button>
+    <!-- Dialog Edit Diagonostic Center -->
+    <ng-template #editDiagonosticCenter>
+      <h2 matDialogTitle>Edit Diagnostic Center!</h2>
       <mat-dialog-content>
         <form #customeForm="ngForm">
           <mat-form-field floatLabel="auto" appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput name="name" required [(ngModel)]="hospital.name" type="text">
+            <input matInput name="name" required [(ngModel)]="diagonosticCenter.name" type="text">
           </mat-form-field>
           <mat-form-field floatLabel="auto" appearance="outline">
             <mat-label>Address</mat-label>
-            <input matInput name="address" required [(ngModel)]="hospital.address" type="text">
+            <input matInput name="address" required [(ngModel)]="diagonosticCenter.address" type="text">
           </mat-form-field>
           <mat-form-field floatLabel="auto" appearance="outline">
             <mat-label>Mobile</mat-label>
-            <input matInput name="mobile" required [(ngModel)]="hospital.mobile" type="text">
+            <input matInput name="contact" required [(ngModel)]="diagonosticCenter.contact" type="text">
           </mat-form-field>
           <mat-dialog-actions align="end">
             <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
-              (click)="onUpdate(hospital)">Update</button>
+              (click)="onUpdate(diagonosticCenter)">Update</button>
           </mat-dialog-actions>
         </form>
 

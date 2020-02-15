@@ -27,6 +27,8 @@
     "firebase": "^7.5.0",
     "hammerjs": "^2.0.8",
     "ng-image-slider": "^2.3.0",
+    "ng-simple-slideshow": "^1.2.9",
+    "ngx-swiper-wrapper": "^8.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

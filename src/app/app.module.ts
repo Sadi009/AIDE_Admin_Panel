@@ -14,6 +14,10 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { SliderModule } from 'angular-image-slider';
 import { NgImageSliderModule } from 'ng-image-slider';
+import {SlideshowModule} from 'ng-simple-slideshow';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './shop/shop.component';
@@ -42,8 +46,14 @@ import { CatagoryService } from './services/shopService/catagory.service';
 import { MyProductService } from './services/myProductService/myProductService';
 import { CreateOrderService } from './services/shopService/create-order.service';
 import { LoginComponent } from './login/login.component';
+import { DiagonosticCenterComponent } from './diagonostic-center/diagonostic-center.component';
+import { DiagonosticCenterDetailsComponent } from './diagonostic-center/diagonostic-center-details/diagonostic-center-details.component';
+import { DiagonosticService } from './services/diagonosticService/diagonosticService';
 
-
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +72,9 @@ import { LoginComponent } from './login/login.component';
     FilterPipe,
     UsersComponent,
     MyProductComponent,
-    LoginComponent
+    LoginComponent,
+    DiagonosticCenterComponent,
+    DiagonosticCenterDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +87,9 @@ import { LoginComponent } from './login/login.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     SliderModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    SlideshowModule,
+    SwiperModule
   ],
   providers: [
     ShopService,
@@ -88,7 +102,12 @@ import { LoginComponent } from './login/login.component';
     UserService,
     CatagoryService,
     MyProductService,
-    CreateOrderService
+    CreateOrderService,
+    DiagonosticService,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })

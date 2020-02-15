@@ -31,8 +31,8 @@ export class MyProductComponent implements OnInit {
 
 //   imageObject: Array<object> = [
 //     {
-//         image: this.img,
-//         thumbImage: this.img,
+//         image: this.image_1,
+//         thumbImage: this.image_1,
 //         alt: 'alt of image',
 //     },
 //      {

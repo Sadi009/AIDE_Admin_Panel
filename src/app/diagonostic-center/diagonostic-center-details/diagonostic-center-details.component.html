@@ -1,0 +1,64 @@
+<mat-accordion>
+  <button mat-raised-button color="accent" (click)="onOpenModel(testName)">Add Test Name</button>
+  <!-- Dialog Add Test Name  -->
+  <ng-template #testName>
+    <h2 matDialogTitle>Add Test Name!</h2>
+    <mat-dialog-content>
+      <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Type Name</mat-label>
+          <input matInput name="typeName" required [(ngModel)]="typeName" type="text">
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+            (click)="createNew()">Add</button>
+        </mat-dialog-actions>
+      </form>
+
+    </mat-dialog-content>
+  </ng-template>
+  <!-- Dialog End  -->
+  <mat-expansion-panel *ngFor="let test of test_type">
+    <mat-expansion-panel-header (click)="getDetails(test)">
+      <mat-panel-title>
+        {{test}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-raised-button color="accent" (click)="onOpenModel(testDetails)">Add Test Details</button>
+    <!-- Dialog Add Test Name  -->
+  <ng-template #testDetails>
+    <h2 matDialogTitle>Add Test Details!</h2>
+    <mat-dialog-content>
+      <form #customeForm="ngForm">
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Test Name</mat-label>
+          <input matInput name="test_name" required [(ngModel)]="test_name" type="text">
+        </mat-form-field>
+        <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Price</mat-label>
+          <input matInput name="price" required [(ngModel)]="price" type="number">
+        </mat-form-field>
+        
+        <mat-dialog-actions align="end">
+          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
+            (click)="createDetail(test)">Add</button>
+        </mat-dialog-actions>
+      </form>
+
+    </mat-dialog-content>
+  </ng-template>
+  <!-- Dialog End  -->
+    <table>
+      <tr>
+        <th>Test Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let d of details">
+        <td>{{d.name}}</td>
+        <td>{{d.price}} TK</td>
+        <td><button>Edit</button></td>
+      </tr>
+    </table>
+  </mat-expansion-panel>
+</mat-accordion>

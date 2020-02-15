@@ -18,7 +18,7 @@ mat-sidenav {
   /* background-color: rgba(0, 0, 0, 0.829); */
   /* background-color: #3880ff; */
   background: linear-gradient(125deg, rgba(49,113,224,1) 66%, rgba(56,128,255,1) 66%);
-  width: 200px;
+  width: 250px;
   padding-top: 15px;
 }
 .mat-list-base .mat-list-item .mat-list-item-content {
@@ -45,6 +45,7 @@ mat-sidenav {
   padding-left: 45px !important;
   overflow: hidden;
   box-shadow: 2px 2px 7px #000;
+  width: 204px !important;
 }
 mat-divider {
   background-color: #fff;

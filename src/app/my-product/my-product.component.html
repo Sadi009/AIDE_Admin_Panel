@@ -1,6 +1,8 @@
 <div class="my_product">
   <mat-grid-list cols="4" rowHeight="2:4" gutterSize="10px">
     <mat-grid-tile *ngFor="let my_product of my_products">
+
+    
       <div> 
         <mat-card class="example-card">
           <mat-card-header>
@@ -9,7 +11,14 @@
             <mat-card-subtitle>Catagory: {{my_product.catagory_name}}</mat-card-subtitle>
           </mat-card-header>
           <div class="img">
-            <img mat-card-image src="{{my_product.image}}" alt="Photo">
+            <swiper [config]="config" [(index)]="index">
+              <div>
+                <img mat-card-image src="{{my_product.imageUrls}}" alt="Photo">
+              </div>
+            </swiper>
+            <!-- <img mat-card-image src="{{my_product.imageUrls[0]}}" alt="Photo"> -->
+            <!-- <slideshow [imageUrls]="my_product.imageUrls"></slideshow> -->
+            <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
           </div>
           <mat-card-content>
             <p>Price: {{my_product.price}}</p>

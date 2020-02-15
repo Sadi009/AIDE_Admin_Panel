@@ -8,3 +8,7 @@ mat-form-field {
 mat-grid-tile {
   background-color: lightblue;
 }
+.flex {
+  display: flex;
+  flex-direction: row;
+}

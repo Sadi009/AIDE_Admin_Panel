@@ -47,10 +47,16 @@
     <input matInput type="text" name="search" placeholder="Search">
   </mat-form-field>
   <mat-list-item *ngFor="let ambulance of ambulances">
-    <img matLine src="{{ambulance.image}}" alt="" style="width: 100px; height: 100px;">
-    <h3 matLine>Name: {{ambulance.name}}</h3>
-    <p matLine>Address: {{ambulance.address}}</p>
-    <p matLine>Mobile: {{ambulance.mobile}}</p>
+    <mat-list-item  class="flex">
+      <div style="margin-right: 20px;">
+        <img matLine src="{{ambulance.image}}" alt="" style="width: 100px; height: 100px;">
+      </div>
+      <div>
+        <h3 matLine>Name: {{ambulance.name}}</h3>
+      <p matLine>Address: {{ambulance.address}}</p>
+      <p matLine>Mobile: {{ambulance.mobile}}</p>
+      </div>
+    </mat-list-item>
     <button mat-raised-button color="primary" (click)="onEditAmbulance(editAmbulance)">Edit</button>
     <button mat-raised-button color="warn" (click)="onDeleteAmbulance(ambulance)">Delete</button>
     <!-- Dialog Edit Ambulance -->

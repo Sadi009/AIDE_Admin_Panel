@@ -5,19 +5,19 @@
         <mat-grid-tile>
           <div class="uploadImage">
             <h5>Select Image 1</h5>
-            <span><input type="file" id="myfile1" name="image" [(ngModel)]="image" (change)="onImageSelect($event)"></span>
+            <span><input type="file" id="myfile1" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" accept="image/*"></span>
         </div>
         </mat-grid-tile>
         <mat-grid-tile>
           <div class="uploadImage">
             <h5>Select Image 2</h5>
-            <span><input type="file" id="myfile2" name="myfile2"></span>
+            <span><input type="file" id="myfile2" name="myfile2" (change)="onImageSelect($event)" accept="image/*"></span>
         </div>
         </mat-grid-tile>
         <mat-grid-tile>
           <div class="uploadImage">
             <h5>Select Image 3</h5>
-            <span><input type="file" id="myfile3" name="myfile3"></span>
+            <span><input type="file" id="myfile3" name="myfile3" (change)="onImageSelect($event)" accept="image/*"></span>
         </div>
         </mat-grid-tile>
       </mat-grid-list>

@@ -15,42 +15,50 @@ export class CreateOrderComponent implements OnInit {
   price;
   quantity;
   imgUrl;
-  userImg;
+  imgArray = [];
   constructor(private createOrderService: CreateOrderService, private fireStorage: AngularFireStorage) { }
 
   ngOnInit() {
   }
   onImageSelect(img: any, user?: any) {
     console.log(img);
-    this.userImg = img.target.files[0];
-
+    this.imgArray.push(...img.target.files);
+    console.log(this.imgArray);
   }
   onSubmit() {
-    let nam = new Date().getTime();
-    this.fireStorage
+    let multiImg = [];
+    for (let i = 0; i < this.imgArray.length; i++) {
+      let nam = new Date().getTime();
+      this.fireStorage
       .ref("my_products/" + nam)
-      .put(this.userImg)
+      .put(this.imgArray[i])
       .then(res => {
         res.ref.getDownloadURL().then(url => {
           console.log(url);
-          this.imgUrl = url;
-          this.onUploadToDatabase();
+          multiImg.push(url);
+          if(i == (this.imgArray.length - 1)) {
+            this.onUploadToDatabase(multiImg);
+          }
+          
         });
       });
+    }
+    
   }
-  onUploadToDatabase() {
+  onUploadToDatabase(multiImage) {
     const data = {
       name: this.name,
       catagory_name: this.catagory_name,
-      image: this.imgUrl,
       description: this.description,
       price: this.price,
-      quantity: this.quantity
+      quantity: this.quantity,
+      imageUrls: multiImage
     };
-    this.createOrderService.createOrder(data).then(res => { });
     if (data === null) {
       return;
     }
+    this.createOrderService.createOrder(data).then(res => { });
+    
     this.name = "";
     this.image = "";
     this.catagory_name = "",
