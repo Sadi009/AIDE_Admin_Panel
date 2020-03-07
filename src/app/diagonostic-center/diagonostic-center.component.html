@@ -31,11 +31,12 @@
     </mat-dialog-content>
   </ng-template>
   <!-- Dialog End  -->
+  
   <mat-form-field floatLabel="auto">
     <mat-label><i class="material-icons">search</i></mat-label>
-    <input matInput type="text" name="search" placeholder="Search">
+    <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
   </mat-form-field>
-  <mat-list-item *ngFor="let diagonosticCenter of diagonostic_center_List">
+  <mat-list-item *ngFor="let diagonosticCenter of diagonostic_center_List | filter:search">
     <mat-list-item [routerLink]="['/diagonostic-center-details', {id: diagonosticCenter.id}]" style="cursor: pointer;" class="flex">
       <div style="margin-right: 20px;">
         <img matLine src="{{diagonosticCenter.image}}" alt="" style="width: 100px; height: 100px;">

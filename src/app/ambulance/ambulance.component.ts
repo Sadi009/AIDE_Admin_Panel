@@ -17,7 +17,8 @@ export class AmbulanceComponent implements OnInit {
   address;
   mobile;
   userImg;
-  imgUrl
+  imgUrl;
+  search;
   constructor(private ambulanceService: AmbulanceService, private dialog: MatDialog, private fireStorage: AngularFireStorage) { }
 
   getAmbulance() {
@@ -38,10 +39,13 @@ export class AmbulanceComponent implements OnInit {
     this.dialog.open(templateRef);
   }
   onDeleteAmbulance(data) {
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
     this.ambulanceService.deleteAmbulance(data.id);
     const index = this.ambulances.indexOf(data);
     this.ambulances.splice(index, 1);
     console.log(data.id);
+    }
   }
   onImageSelect(img: any) {
     this.userImg = img.target.files[0];

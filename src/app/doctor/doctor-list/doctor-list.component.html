@@ -2,7 +2,7 @@
 <button class="addButton" mat-raised-button color="accent" (click)="onOperDialog(addDorctor)">Add Doctor</button>
 <mat-form-field floatLabel="auto">
   <mat-label><i class="material-icons">search</i></mat-label>
-  <input matInput type="text" name="search" placeholder="Search">
+  <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <!-- Dialog Add Doctor -->
 <ng-template #addDorctor>
@@ -35,7 +35,7 @@
 </ng-template>
 <!-- Dialog End  -->
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let doctor of doctors">
+  <mat-expansion-panel *ngFor="let doctor of doctors | filter:search">
     <mat-expansion-panel-header (click)="onExpansion(doctor.id)">
       <mat-panel-title>Name: {{doctor.name}}</mat-panel-title>
       <mat-panel-description>

@@ -1,14 +1,14 @@
 <h3>Order Details</h3>
 <mat-form-field floatLabel="auto">
   <mat-label><i class="material-icons">search</i></mat-label>
-  <input matInput type="text" name="search" placeholder="Search">
+  <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let order of orders">
+  <mat-expansion-panel *ngFor="let order of orders | filter:search">
     <p> Customer Address: {{order.address}}</p>
     <p>Mobile: {{ order.contact }}</p>
       <mat-expansion-panel-header>
-        <mat-panel-title><h4>Customer Name: {{order.user_name}}</h4></mat-panel-title>
+        <mat-panel-title><h4>Customer Name: {{order.name}}</h4></mat-panel-title>
         <mat-panel-description>
           <p>Date of order: {{ order.date }}</p>
         </mat-panel-description>

@@ -1,7 +1,7 @@
 <h3>Catagories</h3>
 <mat-form-field floatLabel="auto">
   <mat-label><i class="material-icons">search</i></mat-label>
-  <input matInput type="text" name="search" placeholder="Search">
+  <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <mat-list>
     <div>
@@ -17,9 +17,14 @@
             <input matInput name="name" required [(ngModel)]="name" type="text">
           </mat-form-field>
           <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Module</mat-label>
-            <input matInput name="module" required [(ngModel)]="module" type="text">
-          </mat-form-field>
+            <mat-label>Module: {{module}}</mat-label>
+            <mat-select [(value)]="module">
+              <mat-optgroup label="module">
+                <mat-option value="Shop">Shop</mat-option>
+                <mat-option value="Doctor">Doctor</mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field> 
         </mat-dialog-content>
         <mat-dialog-actions align="end">
           <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onSubmit()">Add</button>
@@ -27,7 +32,7 @@
       </form>
     </ng-template>
     <!-- End add catagory model  -->
-  <mat-list-item *ngFor="let catagory of catagories">
+  <mat-list-item *ngFor="let catagory of catagories | filter:search">
     <h3 matLine>Name: {{catagory.name}}</h3>
     <p matLine>Module: {{catagory.module}}</p>
     <div>
@@ -47,9 +52,14 @@
               <input matInput name="name" required [(ngModel)]="catagory.name" type="text">
             </mat-form-field>
             <mat-form-field floatLabel="auto" appearance="outline">
-              <mat-label>Module</mat-label>
-              <input matInput name="module" required [(ngModel)]="catagory.module" type="text">
-            </mat-form-field>
+              <mat-label>Module: {{catagory.module}}</mat-label>
+              <mat-select [(value)]="catagory.module">
+                <mat-optgroup label="module">
+                  <mat-option value="Shop">Shop</mat-option>
+                  <mat-option value="Doctor">Doctor</mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field> 
           </mat-dialog-content>
           <mat-dialog-actions align="end">
             <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid" (click)="onUpdate(catagory)">Edit</button>

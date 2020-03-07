@@ -2,7 +2,7 @@
 <button class="addButton" mat-raised-button color="accent" (click)="onOperDialog(addUser)">Add Users</button>
 <mat-form-field floatLabel="auto">
   <mat-label><i class="material-icons">search</i></mat-label>
-  <input matInput type="text" name="search" placeholder="Search">
+  <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <!-- Dialog Add user -->
 <ng-template #addUser>
@@ -52,7 +52,7 @@
 </ng-template>
 <!-- Dialog End  -->
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let user of users">
+  <mat-expansion-panel *ngFor="let user of users | filter:search">
     <mat-expansion-panel-header>
       <mat-panel-title>Name: {{user.name}}</mat-panel-title>
       <mat-panel-description>

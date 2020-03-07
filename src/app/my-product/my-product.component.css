@@ -1,4 +1,7 @@
-
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
 .img img {
     width: 200px;
     height: 200px;

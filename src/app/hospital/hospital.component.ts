@@ -17,6 +17,7 @@ export class HospitalComponent implements OnInit {
   mobile;
   userImg;
   imgUrl;
+  search;
 
   constructor(private hospitalService: HospitalService, private dialog: MatDialog, private fireStorage: AngularFireStorage) { }
 
@@ -26,21 +27,21 @@ export class HospitalComponent implements OnInit {
         this.hospitals.push(result.data());
       });
     });
-    }
-    ngOnInit() {
-      this.getHospital();
-    }
-    onAddHospital(templateRef: TemplateRef<any>) {
-      this.dialog.open(templateRef);
-    }
-    onEditHospital(templateRef: TemplateRef<any>) {
-      this.dialog.open(templateRef);
-    }
-    onImageSelect(img: any) {
-      this.userImg = img.target.files[0];
-    }
-    onSubmit() {
-      let nam = new Date().getTime();
+  }
+  ngOnInit() {
+    this.getHospital();
+  }
+  onAddHospital(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+  onEditHospital(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+  onImageSelect(img: any) {
+    this.userImg = img.target.files[0];
+  }
+  onSubmit() {
+    let nam = new Date().getTime();
     this.fireStorage
       .ref("hospitals/" + nam)
       .put(this.userImg)
@@ -60,15 +61,15 @@ export class HospitalComponent implements OnInit {
       mobile: this.mobile
     };
     console.log(data);
-      this.hospitalService.addHospital(data).then(res => {});
-      if (data === null) {
-        return;
-      }
-      this.hospitals.push(data);
-      this.image = '';
-      this.name = '';
-      this.address = '';
-      this.mobile = '';
+    this.hospitalService.addHospital(data).then(res => { });
+    if (data === null) {
+      return;
+    }
+    this.hospitals.push(data);
+    this.image = '';
+    this.name = '';
+    this.address = '';
+    this.mobile = '';
   }
   onUpdate(data) {
     console.log(data);
@@ -78,10 +79,12 @@ export class HospitalComponent implements OnInit {
     this.mobile = '';
   }
   onDeleteHospital(data) {
-    this.hospitalService.deleteHospital(data.id);
-    const index = this.hospitals.indexOf(data);
-    this.hospitals.splice(index, 1);
-    console.log(data.id);
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
+      this.hospitalService.deleteHospital(data.id);
+      const index = this.hospitals.indexOf(data);
+      this.hospitals.splice(index, 1);
+      console.log(data.id);
+    }
   }
-
 }

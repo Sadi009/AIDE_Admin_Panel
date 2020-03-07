@@ -1,5 +1,7 @@
 <mat-accordion>
-  <button mat-raised-button color="accent" (click)="onOpenModel(testName)">Add Test Name</button>
+  <button mat-raised-button color="accent" (click)="onOpenModel(testName)">
+    Add Test Name
+  </button>
   <!-- Dialog Add Test Name  -->
   <ng-template #testName>
     <h2 matDialogTitle>Add Test Name!</h2>
@@ -7,14 +9,26 @@
       <form #customeForm="ngForm">
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Type Name</mat-label>
-          <input matInput name="typeName" required [(ngModel)]="typeName" type="text">
+          <input
+            matInput
+            name="typeName"
+            required
+            [(ngModel)]="typeName"
+            type="text"
+          />
         </mat-form-field>
         <mat-dialog-actions align="end">
-          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
-            (click)="createNew()">Add</button>
+          <button
+            mat-stroked-button
+            matDialogClose
+            color="primary"
+            [disabled]="!customeForm.valid"
+            (click)="createNew()"
+          >
+            Add
+          </button>
         </mat-dialog-actions>
       </form>
-
     </mat-dialog-content>
   </ng-template>
   <!-- Dialog End  -->
@@ -24,40 +38,111 @@
         {{test}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <button mat-raised-button color="accent" (click)="onOpenModel(testDetails)">Add Test Details</button>
+    <button mat-raised-button color="accent" (click)="onOpenModel(testDetails)">
+      Add Test Details
+    </button>
     <!-- Dialog Add Test Name  -->
-  <ng-template #testDetails>
-    <h2 matDialogTitle>Add Test Details!</h2>
-    <mat-dialog-content>
-      <form #customeForm="ngForm">
-        <mat-form-field floatLabel="auto" appearance="outline">
-          <mat-label>Test Name</mat-label>
-          <input matInput name="test_name" required [(ngModel)]="test_name" type="text">
-        </mat-form-field>
-        <mat-form-field floatLabel="auto" appearance="outline">
-          <mat-label>Price</mat-label>
-          <input matInput name="price" required [(ngModel)]="price" type="number">
-        </mat-form-field>
-        
-        <mat-dialog-actions align="end">
-          <button mat-stroked-button matDialogClose color="primary" [disabled]="!customeForm.valid"
-            (click)="createDetail(test)">Add</button>
-        </mat-dialog-actions>
-      </form>
+    <ng-template #testDetails>
+      <h2 matDialogTitle>Add Test Details!</h2>
+      <mat-dialog-content>
+        <form #customeForm="ngForm">
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Test Name</mat-label>
+            <input
+              matInput
+              name="test_name"
+              required
+              [(ngModel)]="test_name"
+              type="text"
+            />
+          </mat-form-field>
+          <mat-form-field floatLabel="auto" appearance="outline">
+            <mat-label>Price</mat-label>
+            <input
+              matInput
+              name="price"
+              required
+              [(ngModel)]="price"
+              type="number"
+            />
+          </mat-form-field>
 
-    </mat-dialog-content>
-  </ng-template>
-  <!-- Dialog End  -->
+          <mat-dialog-actions align="end">
+            <button
+              mat-stroked-button
+              matDialogClose
+              color="primary"
+              [disabled]="!customeForm.valid"
+              (click)="createDetail(test)"
+            >
+              Add
+            </button>
+          </mat-dialog-actions>
+        </form>
+      </mat-dialog-content>
+    </ng-template>
+    <!-- Dialog End  -->
+    <mat-form-field floatLabel="auto">
+      <mat-label><i class="material-icons">search</i></mat-label>
+      <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
+    </mat-form-field>  
     <table>
       <tr>
         <th>Test Name</th>
         <th>Price</th>
-        <th></th>
       </tr>
-      <tr *ngFor="let d of details">
+      <tr *ngFor="let d of details | filter:search; let i = index">
         <td>{{d.name}}</td>
         <td>{{d.price}} TK</td>
-        <td><button>Edit</button></td>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onOpenModel(editTestDetails)"
+        >
+          Edit
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteSubTest(test, i)">Delete</button>
+        <!-- Dialog Edit Test Name  -->
+        <ng-template #editTestDetails>
+          <h2 matDialogTitle>Edit Test Details!</h2>
+          <mat-dialog-content>
+            <form #customeForm="ngForm">
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Test Name</mat-label>
+                <input
+                  matInput
+                  name="test_name"
+                  required
+                  [(ngModel)]="d.name"
+                  type="text"
+                />
+              </mat-form-field>
+              <mat-form-field floatLabel="auto" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                  matInput
+                  name="price"
+                  required
+                  [(ngModel)]="d.price"
+                  type="number"
+                />
+              </mat-form-field>
+
+              <mat-dialog-actions align="end">
+                <button
+                  mat-stroked-button
+                  matDialogClose
+                  color="primary"
+                  [disabled]="!customeForm.valid"
+                  (click)="editDetail(test, d, i)"
+                >
+                  Edit
+                </button>
+              </mat-dialog-actions>
+            </form>
+          </mat-dialog-content>
+        </ng-template>
+        <!-- Dialog End  -->
       </tr>
     </table>
   </mat-expansion-panel>

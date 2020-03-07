@@ -62,3 +62,6 @@ h3, mat-panel-title, mat-panel-description {
 mat-expansion-panel button {
   margin-left: 10px;
 }
+button {
+  margin-right: 10px;
+}

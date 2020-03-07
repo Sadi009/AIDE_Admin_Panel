@@ -16,6 +16,7 @@ export class DiagonosticCenterComponent implements OnInit {
   contact;
   userImg;
   imgUrl;
+  search;
   constructor(private dialog: MatDialog, 
     private diagonosticService: DiagonosticService,
     private fireStorage: AngularFireStorage) { }
@@ -76,8 +77,11 @@ export class DiagonosticCenterComponent implements OnInit {
     this.contact = "";
   }
   onDeleteDiagnosticCenter(data) {
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
     this.diagonosticService.deleteDiagonosticCenter(data);
     const index = this.diagonostic_center_List.indexOf(data);
     this.diagonostic_center_List.splice(index, 1);
+    }
   }
 }

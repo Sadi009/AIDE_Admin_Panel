@@ -13,3 +13,10 @@ td {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+button {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+mat-form-field {
+  width: 500px;
+}

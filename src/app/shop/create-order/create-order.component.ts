@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateOrderService } from 'src/app/services/shopService/create-order.service';
 import { AngularFireStorage } from "@angular/fire/storage";
+import { CatagoryService } from 'src/app/services/shopService/catagory.service';
 
 @Component({
   selector: 'app-create-order',
@@ -8,6 +9,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
   styleUrls: ['./create-order.component.css']
 })
 export class CreateOrderComponent implements OnInit {
+  catagories = [];
   name;
   catagory_name
   image;
@@ -16,9 +18,19 @@ export class CreateOrderComponent implements OnInit {
   quantity;
   imgUrl;
   imgArray = [];
-  constructor(private createOrderService: CreateOrderService, private fireStorage: AngularFireStorage) { }
+  constructor(private createOrderService: CreateOrderService,
+    private fireStorage: AngularFireStorage,
+    private catagoryService: CatagoryService) { }
 
+    getCatagory() {
+      this.catagoryService.getCatagory().subscribe(res => {
+        res.forEach(result => {
+          this.catagories.push(result.data());
+        });
+      });
+    }
   ngOnInit() {
+    this.getCatagory();
   }
   onImageSelect(img: any, user?: any) {
     console.log(img);

@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
   type;
   userImg;
   imgUrl;
+  search;
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
@@ -109,9 +110,12 @@ export class UsersComponent implements OnInit {
   }
 
   onDeleteUser(data) {
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
     this.userService.deleteUser(data);
     const index = this.users.indexOf(data);
     this.users.splice(index, 1);
     console.log(data.id);
+    }
   }
 }

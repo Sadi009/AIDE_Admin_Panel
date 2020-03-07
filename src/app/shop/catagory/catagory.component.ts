@@ -8,20 +8,8 @@ import { CatagoryService } from 'src/app/services/shopService/catagory.service';
   styleUrls: ['./catagory.component.css']
 })
 export class CatagoryComponent implements OnInit {
-  catagories = [
-    // {
-    //   name: 'A1'
-    // },
-    // {
-    //   name: 'A2'
-    // },
-    // {
-    //   name: 'A3'
-    // },
-    // {
-    //   name: 'A4'
-    // },
-  ];
+  search;
+  catagories = [];
   name;
   module;
   constructor(private catagoryService: CatagoryService, private dialog: MatDialog) { }
@@ -60,10 +48,12 @@ export class CatagoryComponent implements OnInit {
     this.module = '';
   }
   onDeleteCatagory(data) {
-    this.catagoryService.deleteCatagroy(data.id);
-    const index = this.catagories.indexOf(data);
-    this.catagories.splice(index, 1);
-    console.log(data.id);
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
+      this.catagoryService.deleteCatagroy(data.id);
+      const index = this.catagories.indexOf(data);
+      this.catagories.splice(index, 1);
+      console.log(data.id);
+    }
   }
-
 }

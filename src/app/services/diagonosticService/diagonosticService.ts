@@ -28,13 +28,43 @@ export class DiagonosticService {
   }
   addTestName(id, name) {
     return new Promise<any>((resolve, reject) => {
-      return this.firestore.collection("diagonostic_center").doc(id).set({tests: name},{merge:true});
+      resolve(this.firestore.collection("diagonostic_center").doc(id).set({tests: name},{merge:true}));
     });
   }
+
   addTestDetails(id, name, data) {
-    
     return new Promise<any>((resolve, reject) => {
-      return this.firestore.collection("diagonostic_center").doc(id).update({[`tests.${name}`]: data});
+      this.firestore.collection("diagonostic_center").doc(id).get().subscribe(datas => {
+        let test = datas.data().tests[name];
+        test.push(data);
+
+        resolve(this.firestore.collection("diagonostic_center").doc(id).update({[`tests.${name}`]: test}));
+      });
+    });
+  }
+
+  editTests(data) {
+    let test_name = data.name;
+    let index = data.index;
+    let id = data.id;
+    return new Promise<any>((resolve, reject) => {
+      this.firestore.collection("diagonostic_center").doc(id).get().subscribe(datas => {
+        let test = datas.data().tests[test_name];
+        test[index] = data.data;
+
+        this.firestore.collection("diagonostic_center").doc(id).update({[`tests.${test_name}`]: test});
+      });
+    });
+  }
+
+  deleteSubTest(id, name, index) {
+    return new Promise<any>((resolve, reject) => {
+      this.firestore.collection("diagonostic_center").doc(id).get().subscribe(datas => {
+        let test = datas.data().tests[name];
+        test.splice(index, 1);
+        
+        resolve(this.firestore.collection("diagonostic_center").doc(id).update({[`tests.${name}`]: test}));
+      });
     });
   }
 }

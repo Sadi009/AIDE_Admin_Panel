@@ -15,6 +15,7 @@ export class OrderDetailsComponent implements OnInit {
   productsArr = [];
   user_id;
   product_id;
+  search;
 
   constructor(private orderService: OrderDetailsService, private productDetailService: ProductDetailsService) { }
   getOrders() {
@@ -30,9 +31,6 @@ export class OrderDetailsComponent implements OnInit {
 
   }
 
-  applyFilter(filterValue: string) {
-    this.products.filter = filterValue.trim().toLowerCase();
-  }
   onExpansion(id) {
     this.users = [];
     this.getUser(id);

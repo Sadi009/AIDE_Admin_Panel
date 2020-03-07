@@ -1,19 +1,27 @@
 <div class="my_product">
+  <mat-form-field floatLabel="auto">
+    <mat-label><i class="material-icons">search</i></mat-label>
+    <input matInput type="text" name="search" placeholder="Search"  [(ngModel)]="search"/>
+  </mat-form-field>
   <mat-grid-list cols="4" rowHeight="2:4" gutterSize="10px">
-    <mat-grid-tile *ngFor="let my_product of my_products">
-
-    
-      <div> 
+    <mat-grid-tile *ngFor="let my_product of my_products | filter:search">
+      <div>
         <mat-card class="example-card">
           <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Name: {{my_product.name}}</mat-card-title>
-            <mat-card-subtitle>Catagory: {{my_product.catagory_name}}</mat-card-subtitle>
+            <mat-card-subtitle
+              >Catagory: {{my_product.catagory_name}}</mat-card-subtitle
+            >
           </mat-card-header>
           <div class="img">
             <swiper [config]="config" [(index)]="index">
               <div>
-                <img mat-card-image src="{{my_product.imageUrls}}" alt="Photo">
+                <img
+                  mat-card-image
+                  src="{{my_product.imageUrls}}"
+                  alt="Photo"
+                />
               </div>
             </swiper>
             <!-- <img mat-card-image src="{{my_product.imageUrls[0]}}" alt="Photo"> -->
@@ -23,12 +31,16 @@
           <mat-card-content>
             <p>Price: {{my_product.price}}</p>
             <p>Quantity: {{my_product.quantity}}</p>
-            <button mat-raised-button color="warn" (click)="onDelete(my_product)">Delete</button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="onDelete(my_product)"
+            >
+              Delete
+            </button>
           </mat-card-content>
         </mat-card>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
- 
-
 </div>

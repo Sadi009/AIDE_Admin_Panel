@@ -24,6 +24,7 @@ export class DoctorListComponent implements OnInit {
   doctor_id;
   userImg;
   imgUrl;
+  search;
 
   constructor(private doctorListService: DoctorListService, private dialog: MatDialog, private fireStorage: AngularFireStorage) { }
 
@@ -41,22 +42,22 @@ export class DoctorListComponent implements OnInit {
         this.doctors.push(result.data());
       });
     });
-    }
-    onImageSelect(img: any) {
-      this.userImg = img.target.files[0];
-    }
-    onSubmit() {
-      let nam = new Date().getTime();
-      this.fireStorage
-        .ref("hospitals/" + nam)
-        .put(this.userImg)
-        .then(res => {
-          res.ref.getDownloadURL().then(url => {
-            console.log(url);
-            this.imgUrl = url;
-            this.onUploadToDatabase();
-          });
+  }
+  onImageSelect(img: any) {
+    this.userImg = img.target.files[0];
+  }
+  onSubmit() {
+    let nam = new Date().getTime();
+    this.fireStorage
+      .ref("hospitals/" + nam)
+      .put(this.userImg)
+      .then(res => {
+        res.ref.getDownloadURL().then(url => {
+          console.log(url);
+          this.imgUrl = url;
+          this.onUploadToDatabase();
         });
+      });
   }
   onUploadToDatabase() {
     const data = {
@@ -69,7 +70,7 @@ export class DoctorListComponent implements OnInit {
       description: this.description,
     };
     console.log(this.address);
-    this.doctorListService.addDoctor(data).then(res => {});
+    this.doctorListService.addDoctor(data).then(res => { });
     if (data === null) {
       return;
     }
@@ -87,12 +88,15 @@ export class DoctorListComponent implements OnInit {
     this.email = '';
   }
   onDeleteDoctor(data) {
-    this.doctorListService.deleteDoctor(data.id);
-    const index = this.doctors.indexOf(data);
-    this.doctors.splice(index, 1);
-    console.log(data.id);
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
+      this.doctorListService.deleteDoctor(data.id);
+      const index = this.doctors.indexOf(data);
+      this.doctors.splice(index, 1);
+      console.log(data.id);
+    }
   }
-//  Chambers
+  //  Chambers
   onExpansion(id) {
     this.chambers = [];
     this.getChambers(id);
@@ -105,7 +109,7 @@ export class DoctorListComponent implements OnInit {
         this.chambers.push(result.data());
       });
     });
-    }
+  }
 
   onSubmitChamber() {
     const data = {
@@ -118,7 +122,7 @@ export class DoctorListComponent implements OnInit {
       time: this.time,
       doctor_id: this.doctor_id
     };
-    this.doctorListService.addChamber(data).then(res => {});
+    this.doctorListService.addChamber(data).then(res => { });
     if (data === null) {
       return;
     }
@@ -128,24 +132,27 @@ export class DoctorListComponent implements OnInit {
     this.mobile = '';
     this.schedule = '';
     this.time = '';
-}
+  }
 
-    onUpdateChamber(data) {
-      console.log(data);
-      this.doctorListService.editChamber(data);
-      this.chamberName = '';
-      this.chamberAdderss = '';
-      this.mobile = '';
-      this.schedule = '';
-      this.time = '';
-    }
-    onDeleteChamber(data) {
+  onUpdateChamber(data) {
+    console.log(data);
+    this.doctorListService.editChamber(data);
+    this.chamberName = '';
+    this.chamberAdderss = '';
+    this.mobile = '';
+    this.schedule = '';
+    this.time = '';
+  }
+  onDeleteChamber(data) {
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
       this.doctorListService.deleteChamber(data.id);
       const index = this.chambers.indexOf(data);
       this.chambers.splice(index, 1);
       console.log(data.id);
     }
-    
+  }
+
   // getChamber(id) {
   //   const doctor = this.doctorListService.doctors;
   //   doctor.forEach(res => {

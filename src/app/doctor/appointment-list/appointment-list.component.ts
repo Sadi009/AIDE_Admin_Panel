@@ -15,6 +15,7 @@ export class AppointmentListComponent implements OnInit {
   appointment_time;
   status = 'Requested';
   mobile;
+  search;
   constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit() {

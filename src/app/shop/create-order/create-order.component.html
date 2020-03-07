@@ -27,9 +27,17 @@
           <input matInput required name="name" [(ngModel)]="name">
         </mat-form-field>
         <mat-form-field floatLabel="auto" appearance="outline">
+          <mat-label>Catagory Name: {{catagory_name}}</mat-label>
+          <mat-select [(value)]="catagory_name">
+            <mat-optgroup label="Catagory Name">
+              <mat-option *ngFor="let catagory of catagories" value="{{catagory.name}}">{{catagory.name}}</mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field> 
+        <!-- <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Catagory Name</mat-label>
           <input matInput required name="catagory_name" [(ngModel)]="catagory_name">
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Description</mat-label>
           <input matInput required name="description" [(ngModel)]="description">

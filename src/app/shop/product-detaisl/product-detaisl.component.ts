@@ -14,7 +14,9 @@ export class ProductDetaislComponent implements OnInit {
   name;
   address;
   contact;
-  shop_id
+  shop_id;
+  search;
+  productFilter;
 
   constructor(private shopService: ShopService, private productDetailService: ProductDetailsService, private dialog: MatDialog) { }
 
@@ -58,10 +60,13 @@ export class ProductDetaislComponent implements OnInit {
     this.contact = "";
   }
   onDeleteShop(data) {
+    const msg = confirm('Are You Sure you want to delete?');
+    if (msg === true) {
     this.shopService.deleteShop(data.id);
     const index = this.shops.indexOf(data);
     this.shops.splice(index, 1);
     console.log(data.id);
+    }
   }
 
   applyFilter(filterValue: string) {

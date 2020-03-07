@@ -11,6 +11,7 @@ export class MyProductComponent implements OnInit {
   @ViewChild('nav', null) slider: NgImageSliderComponent;
   catagories = [];
   my_products = [];
+  search;
   constructor(private myProductService: MyProductService) { }
 
   ngOnInit() {
