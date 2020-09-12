@@ -1,10 +1,104 @@
 .mat-form-field {
-    font-size: 14px;
-    width: 80%;
-  }
+  font-size: 14px;
+  width: 80%;
+}
+
 .img img {
-    width: 200px;
-    height: 200px;
-    margin: auto;
-    margin-bottom: 10px;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
+
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: center;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+table th {
+  font-size: 18px;
+  padding: 5px;
+}
+
+table .dts {
+  width: 20%;
+}
+
+table .dts mat-chip-list {
+  display: inline-block;
+  text-align: center;
+}
+
+table .dts mat-chip-list mat-chip {
+  font-size: 12px;
+}
+
+table .about {
+  width: 40%;
+}
+
+table .actions {
+  width: 25%;
+}
+
+table .actions button {
+  margin: 5px;
+}
+
+.option-section {
+  margin: 12px 0;
+}
+.option-margin {
+  margin: 0 12px;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, 
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: #673ab7 !important;
+}
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+  background-color: #673ab7 !important;
+}
+
+.uploadImage {
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 150px;
+  width: 150px;
+  text-align: center;
+  position: relative;
+}
+.uploadImage img {
+  height: 150px;
+  width: 150px;
+}
+
+#x {
+  position: absolute;
+  background: white;
+  color: red;
+  top: -10px;
+  right: -10px;
+  border: 1px solid #000;
+  border-radius: 2px;
+}
+
+input[type='file'] {
+  color: transparent;
+  padding: 10px;
+  margin-left: 20px;
 }

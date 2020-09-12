@@ -17,6 +17,7 @@ export class CatagoryComponent implements OnInit {
   ngOnInit() {
     this.getCatagory();
   }
+
   getCatagory() {
     this.catagoryService.getCatagory().subscribe(res => {
       res.forEach(result => {
@@ -24,6 +25,7 @@ export class CatagoryComponent implements OnInit {
       });
     });
   }
+
   onOpenDialog(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
@@ -41,12 +43,14 @@ export class CatagoryComponent implements OnInit {
     this.name = "";
     this.module = "";
   }
+
   onUpdate(data) {
     console.log(data);
     this.catagoryService.editCatagroy(data);
     this.name = '';
     this.module = '';
   }
+  
   onDeleteCatagory(data) {
     const msg = confirm('Are You Sure you want to delete?');
     if (msg === true) {

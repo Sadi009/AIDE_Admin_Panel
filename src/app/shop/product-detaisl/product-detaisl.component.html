@@ -1,109 +1,90 @@
-<h3>Shops & products</h3>
-<button class="addButton" mat-raised-button color="accent" (click)="onOpenDialog(addShop)">Add Shops</button>
- <!-- Dialog Add Shop   -->
- <ng-template #addShop>
-  <h2 matDialogTitle>Shop!</h2>
-  <form #customForm="ngForm">
-    <mat-dialog-content>
-      <div>
-          <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput name="name" [(ngModel)]="name" required>
-          </mat-form-field>
-          <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput name="address" [(ngModel)]="address" required>
-          </mat-form-field>
-          <mat-form-field floatLabel="auto" appearance="outline">
-            <mat-label>Contact</mat-label>
-            <input matInput name="contact" [(ngModel)]="contact" required>
-          </mat-form-field>
-      </div>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-stroked-button matDialogClose color="primary" [disabled]="!customForm.valid" (click)="onSubmit()">Add Shop</button>
-    </mat-dialog-actions>
-  </form>
+<h3>Shops</h3>
+<!-- <button class="addButton" mat-raised-button color="accent" (click)="onOpenDialog(addShop)">Add Shops</button> -->
+<!-- Dialog Add Shop   -->
+<ng-template #addShop>
+	<h2 matDialogTitle>Shop!</h2>
+	<form #customForm="ngForm">
+		<mat-dialog-content>
+			<div>
+				<mat-form-field floatLabel="auto" appearance="outline">
+					<mat-label>Name</mat-label>
+					<input matInput name="name" [(ngModel)]="name" required>
+				</mat-form-field>
+				<mat-form-field floatLabel="auto" appearance="outline">
+					<mat-label>Address</mat-label>
+					<input matInput name="address" [(ngModel)]="address" required>
+				</mat-form-field>
+				<mat-form-field floatLabel="auto" appearance="outline">
+					<mat-label>Contact</mat-label>
+					<input matInput name="contact" [(ngModel)]="contact" required>
+				</mat-form-field>
+			</div>
+		</mat-dialog-content>
+		<mat-dialog-actions align="end">
+			<button mat-stroked-button matDialogClose color="primary" [disabled]="!customForm.valid" (click)="onSubmit()">Add Shop</button>
+		</mat-dialog-actions>
+	</form>
 </ng-template>
 <!-- Dialog End  -->
 <mat-form-field floatLabel="auto">
-  <mat-label><i class="material-icons">search</i></mat-label>
-  <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
+	<mat-label><i class="material-icons">search</i></mat-label>
+	<input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let shop of shops | filter:search">
-        <mat-expansion-panel-header (click)="onExpansion(shop.id)">
-          <mat-panel-title><h4>Name: {{shop.name}}</h4></mat-panel-title>
-          <mat-panel-description>
-            <h5>Address: {{ shop.address }}</h5>
-          </mat-panel-description>
-          <mat-panel-description>
-            <p>Contact: {{ shop.contact }}</p>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <!-- Table  -->
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" [(ngModel)]="productFilter">
-          </mat-form-field>
-          <button mat-raised-button color="primary" (click)="onOpenDialog(editShop)">Edit</button>
-          <button mat-raised-button color="warn" (click)="onDeleteShop(shop)">Delete</button>
-          <!-- Dialog eidt Shop  -->
-          <ng-template #editShop>
-              <h2 matDialogTitle>Shop!</h2>
-              <form #customForm="ngForm">
-                <mat-dialog-content>
-                  <div>
-                      <mat-form-field floatLabel="auto" appearance="outline">
-                        <mat-label>Name</mat-label>
-                        <input matInput name="name" [(ngModel)]="shop.name" required>
-                      </mat-form-field>
-                      <mat-form-field floatLabel="auto" appearance="outline">
-                        <mat-label>Address</mat-label>
-                        <input matInput name="address" [(ngModel)]="shop.address" required>
-                      </mat-form-field>
-                      <mat-form-field floatLabel="auto" appearance="outline">
-                        <mat-label>Contact</mat-label>
-                        <input matInput name="contact" [(ngModel)]="shop.contact" required>
-                      </mat-form-field>
-                  </div>
-                </mat-dialog-content>
-                <mat-dialog-actions align="end">
-                  <button mat-stroked-button matDialogClose color="primary" [disabled]="!customForm.valid" (click)="onUpdate(shop)">Update</button>
-                </mat-dialog-actions>
-              </form>
-            </ng-template>
-          <!-- Dialog End  -->
-          <mat-accordion>
-            <h3>products</h3>
-            <mat-expansion-panel *ngFor="let product of products | filter:productFilter">
-              <mat-expansion-panel-header>
-                <mat-panel-title>Name: {{product.name}}</mat-panel-title>
-                <mat-panel-description>
-                  Price: {{product.price}}
-                </mat-panel-description>
-                <mat-panel-description>
-                  quantity: {{ shop.product_quantity }}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-grid-list cols="3" rowHeight="100px" gutterSize="10px">
-                <mat-grid-tile>
-                  <div class="productImg">
-                    <img src="{{product.image}}" alt="Product Image" style="width: 150px;">
-                  </div>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <p>Description: {{product.description}}</p>
-                  
-                </mat-grid-tile>
-                <mat-grid-tile>
-                  <p>Catagory: {{ product.catagory }}</p>
-                </mat-grid-tile>
-              </mat-grid-list>
-          
-            </mat-expansion-panel>
-            
-          </mat-accordion>
-      </mat-expansion-panel>
+	<mat-expansion-panel *ngFor="let shop of shops | filter:search" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<h4>{{ shop.name }}</h4>
+			</mat-panel-title>
+			<mat-panel-description>
+				<h5>{{ shop.address }}</h5>
+			</mat-panel-description>
+			<mat-panel-description>
+				<p>{{ shop.contact }}</p>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
 
+		<div class="expansion-dts">
+			<img src="{{shop.img1}}">
+			<p>{{ shop.about }}</p>
+		</div>
 
+		<mat-action-row>
+			<button mat-raised-button color="info" (click)="getOrders(shop.id)">Orders</button>
+			<button mat-raised-button color="info" (click)="getProducts(shop.id)">Products</button>
+			<button mat-raised-button color="primary" (click)="onOpenDialog(editShop)">Edit</button>
+			<button mat-raised-button color="warn" (click)="onDeleteShop(shop)">Delete</button>
+		</mat-action-row>
 
+		<!-- Dialog eidt Shop  -->
+		<ng-template #editShop>
+			<h2 matDialogTitle>Shop!</h2>
+			<form #shopUpdateForm="ngForm">
+				<mat-dialog-content>
+					<div>
+						<mat-form-field floatLabel="auto" appearance="outline">
+							<mat-label>Name</mat-label>
+							<input matInput name="name" [(ngModel)]="shop.name" required>
+						</mat-form-field>
+						<mat-form-field floatLabel="auto" appearance="outline">
+							<mat-label>Address</mat-label>
+							<input matInput name="address" [(ngModel)]="shop.address" required>
+						</mat-form-field>
+						<mat-form-field floatLabel="auto" appearance="outline">
+							<mat-label>Contact</mat-label>
+							<input matInput name="contact" [(ngModel)]="shop.contact" required>
+						</mat-form-field>
+						<mat-form-field floatLabel="auto" appearance="outline">
+							<mat-label>About</mat-label>
+							<textarea matInput name="about" [(ngModel)]="shop.about" required></textarea>
+						</mat-form-field>
+					</div>
+				</mat-dialog-content>
+				<mat-dialog-actions align="end">
+					<button mat-stroked-button matDialogClose color="primary" [disabled]="!shopUpdateForm.valid"
+						(click)="onShopUpdate(shop)">Update</button>
+				</mat-dialog-actions>
+			</form>
+		</ng-template>
+	</mat-expansion-panel>
+</mat-accordion>

@@ -1,18 +1,34 @@
-<h3>Order Details</h3>
+<h3>Pending Orders</h3>
 <mat-form-field floatLabel="auto">
   <mat-label><i class="material-icons">search</i></mat-label>
   <input matInput type="text" name="search" placeholder="Search" [(ngModel)]="search">
 </mat-form-field>
 <mat-accordion>
   <mat-expansion-panel *ngFor="let order of orders | filter:search">
-    <p> Customer Address: {{order.address}}</p>
-    <p>Mobile: {{ order.contact }}</p>
       <mat-expansion-panel-header>
-        <mat-panel-title><h4>Customer Name: {{order.name}}</h4></mat-panel-title>
+        <mat-panel-title><h4>{{order.name}}</h4></mat-panel-title>
         <mat-panel-description>
-          <p>Date of order: {{ order.date }}</p>
+          <p>{{ order.date }}</p>
         </mat-panel-description>
       </mat-expansion-panel-header>
+      <table class="order-details">
+        <thead>
+          <tr>
+            <th>Delivery Details</th>
+            <th>Shop Details</th>
+            <th>Order Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td>
+            <p>{{order.name}}</p>
+            <p>{{order.mobile}}</p>
+            <p>{{order.address}}, {{order.city}}</p>
+          </td>
+          <td></td>
+          <td></td>
+        </tbody>
+      </table>
       <!-- Product  -->
       <mat-accordion>
         <h3>Orders</h3>
@@ -51,10 +67,7 @@
                   <p>Shop Contact: {{user.contact}}</p>
                 </div>
               </mat-grid-tile>
-              
             </mat-grid-list>
-              
-              
           </mat-expansion-panel>
       </mat-accordion>
     </mat-expansion-panel>

@@ -1,12 +1,9 @@
-
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav mode="side" opened *ngIf="route.url != '/login'">
     <mat-nav-list class="sideNav">
       <a mat-list-item  routerLink="/home" routerLinkActive="active">Home</a>
       <mat-divider></mat-divider>
       <a mat-list-item  routerLink="/shop" routerLinkActive="active">Shop</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item  routerLink="my-products" routerLinkActive="active">My Products</a>
       <mat-divider></mat-divider>
       <a mat-list-item  routerLink="/doctor" routerLinkActive="active">Doctor</a>
       <mat-divider></mat-divider>
@@ -21,10 +18,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-      <mat-toolbar class="navbar">
+      <mat-toolbar class="navbar" *ngIf="route.url != '/login'">
           <div>AIDE</div>
           <div>
-            <button mat-fab color="primary" routerLink="/login"><mat-icon>logout</mat-icon></button>
+            <button mat-fab color="primary" (click)="signout()"><mat-icon>logout</mat-icon></button>
           </div>
         </mat-toolbar>
     <div class="outlet">

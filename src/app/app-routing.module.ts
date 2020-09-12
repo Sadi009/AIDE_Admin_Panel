@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
-
 import { ShopComponent } from './shop/shop.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AmbulanceComponent } from './ambulance/ambulance.component';
@@ -17,19 +16,18 @@ import { MyProductComponent } from './my-product/my-product.component';
 import { DiagonosticCenterComponent } from './diagonostic-center/diagonostic-center.component';
 import { DiagonosticCenterDetailsComponent } from './diagonostic-center/diagonostic-center-details/diagonostic-center-details.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'shop', component: ShopComponent, children: [
-    { path: '', redirectTo: 'product-details', pathMatch: 'full' },
-    { path: 'product-details', component: ProductDetaislComponent },
+    { path: '', redirectTo: 'shop-details', pathMatch: 'full' },
+    { path: 'shop-details', component: ProductDetaislComponent },
     { path: 'order-details', component: OrderDetailsComponent },
     { path: 'catagory', component: CatagoryComponent },
     { path: 'create-product', component: CreateOrderComponent }
   ] },
-  { path: 'my-products', component: MyProductComponent },
+  { path: 'my-products/:id', component: MyProductComponent },
   { path: 'doctor', component: DoctorComponent },
   { path: 'diagonostic-center', component: DiagonosticCenterComponent },
   { path: 'diagonostic-center-details', component: DiagonosticCenterDetailsComponent },

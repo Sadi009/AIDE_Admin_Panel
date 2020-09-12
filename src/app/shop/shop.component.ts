@@ -13,8 +13,8 @@ export class ShopComponent implements OnInit {
   constructor(private router: Router) {
     this.navLinks = [
         {
-            label: 'Product Details',
-            link: './product-details',
+            label: 'Shop Details',
+            link: './shop-details',
             index: 0
         }, {
             label: 'Order Details',

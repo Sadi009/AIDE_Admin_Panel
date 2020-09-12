@@ -1,30 +1,42 @@
 <div class="creat-order">
-    <h3>Creat Product</h3>
+    <h3>Create Product</h3>
     <form #customForm="ngForm">
       <mat-grid-list cols="3" gutterSize="10px">
         <mat-grid-tile>
-          <div class="uploadImage">
-            <h5>Select Image 1</h5>
-            <span><input type="file" id="myfile1" name="image" [(ngModel)]="image" (change)="onImageSelect($event)" accept="image/*"></span>
-        </div>
+          <div class="uploadImage" *ngIf="!images.img1">
+            <label for="file">Choose Image 1</label>
+            <input type="file" class="inputfile" name="img1" accept="image/*" (change)="onImageSelect('img1', $event)">
+          </div>
+          <div class="uploadImage" *ngIf="images.img1">
+            <button id="x" (click)="deSelect('img1')">X</button>
+            <img src="{{product.img1}}">
+          </div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <div class="uploadImage">
-            <h5>Select Image 2</h5>
-            <span><input type="file" id="myfile2" name="myfile2" (change)="onImageSelect($event)" accept="image/*"></span>
-        </div>
+          <div class="uploadImage" *ngIf="!images.img2">
+            <label for="file">Choose Image 2</label>
+            <input type="file" class="inputfile" name="img2" accept="image/*" (change)="onImageSelect('img2', $event)">
+          </div>
+          <div class="uploadImage" *ngIf="images.img2">
+            <button id="x" (click)="deSelect('img2')">X</button>
+            <img src="{{product.img2}}">
+          </div>
         </mat-grid-tile>
         <mat-grid-tile>
-          <div class="uploadImage">
-            <h5>Select Image 3</h5>
-            <span><input type="file" id="myfile3" name="myfile3" (change)="onImageSelect($event)" accept="image/*"></span>
-        </div>
+          <div class="uploadImage" *ngIf="!images.img3">
+            <label for="file">Choose Image 3</label>
+            <input type="file" class="inputfile" name="img3" accept="image/*" (change)="onImageSelect('img3', $event)">
+          </div>
+          <div class="uploadImage" *ngIf="images.img3">
+            <button id="x" (click)="deSelect('img3')">X</button>
+            <img src="{{product.img3}}">
+          </div>
         </mat-grid-tile>
       </mat-grid-list>
       
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Product Name</mat-label>
-          <input matInput required name="name" [(ngModel)]="name">
+          <input matInput required name="name" [(ngModel)]="product.name">
         </mat-form-field>
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Catagory Name: {{catagory_name}}</mat-label>
@@ -33,25 +45,21 @@
               <mat-option *ngFor="let catagory of catagories" value="{{catagory.name}}">{{catagory.name}}</mat-option>
             </mat-optgroup>
           </mat-select>
-        </mat-form-field> 
-        <!-- <mat-form-field floatLabel="auto" appearance="outline">
-          <mat-label>Catagory Name</mat-label>
-          <input matInput required name="catagory_name" [(ngModel)]="catagory_name">
-        </mat-form-field> -->
+        </mat-form-field>
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Description</mat-label>
-          <input matInput required name="description" [(ngModel)]="description">
+          <textarea matInput required name="description" [(ngModel)]="product.description"></textarea>
         </mat-form-field>
         <mat-form-field floatLabel="auto" appearance="outline">
           <mat-label>Product Price</mat-label>
-          <input matInput required name="price" [(ngModel)]="price">
+          <input type="number" matInput required name="price" [(ngModel)]="product.price">
         </mat-form-field>
-        <mat-form-field floatLabel="auto" appearance="outline">
-          <mat-label>Product Quantity</mat-label>
-          <input matInput required name="quantity" [(ngModel)]="quantity">
-        </mat-form-field>
-        <br>
+        <section class="option-section">
+          <mat-checkbox class="option-margin" name="trending" [(ngModel)]="product.trending">Trending</mat-checkbox>
+          <mat-checkbox class="option-margin" name="featured"  [(ngModel)]="product.featured">Featured</mat-checkbox>
+          <mat-checkbox class="option-margin" name="best_sell"  [(ngModel)]="product.best_sell">Best Sell</mat-checkbox>
+        </section><br>
+
         <button mat-raised-button color="primary" [disabled]="!customForm.valid" (click)="onSubmit()">Add Product</button>
-  
     </form>
 </div>

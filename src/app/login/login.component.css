@@ -1,9 +1,21 @@
 mat-card {
-    width: 350px;
-    padding: 50px;
-    margin: auto;
-  }
+  width: 350px;
+  padding: 50px;
+  margin: auto;
+}
+
 mat-card-title {
-    text-align: center !important;
-} 
-  
+  text-align: center !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin: 0px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}

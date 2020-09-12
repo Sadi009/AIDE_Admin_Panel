@@ -1,46 +1,114 @@
 <div class="my_product">
-  <mat-form-field floatLabel="auto">
-    <mat-label><i class="material-icons">search</i></mat-label>
-    <input matInput type="text" name="search" placeholder="Search"  [(ngModel)]="search"/>
-  </mat-form-field>
-  <mat-grid-list cols="4" rowHeight="2:4" gutterSize="10px">
-    <mat-grid-tile *ngFor="let my_product of my_products | filter:search">
-      <div>
-        <mat-card class="example-card">
-          <mat-card-header>
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title>Name: {{my_product.name}}</mat-card-title>
-            <mat-card-subtitle
-              >Catagory: {{my_product.catagory_name}}</mat-card-subtitle
-            >
-          </mat-card-header>
-          <div class="img">
-            <swiper [config]="config" [(index)]="index">
-              <div>
-                <img
-                  mat-card-image
-                  src="{{my_product.imageUrls}}"
-                  alt="Photo"
-                />
-              </div>
-            </swiper>
-            <!-- <img mat-card-image src="{{my_product.imageUrls[0]}}" alt="Photo"> -->
-            <!-- <slideshow [imageUrls]="my_product.imageUrls"></slideshow> -->
-            <!-- <ng-image-slider [images]="imageObject" #nav></ng-image-slider> -->
-          </div>
-          <mat-card-content>
-            <p>Price: {{my_product.price}}</p>
-            <p>Quantity: {{my_product.quantity}}</p>
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="onDelete(my_product)"
-            >
-              Delete
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+	<mat-form-field floatLabel="auto">
+		<mat-label><i class="material-icons">search</i></mat-label>
+		<input matInput type="text" name="search" placeholder="Search Products" [(ngModel)]="search"/>
+	</mat-form-field>
+
+	<table class="product-details" *ngIf="products">
+		<thead>
+			<tr>
+				<th>Image</th>
+				<th>Details</th>
+				<th>About</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let product of products | filter:search">
+				<td class="img">
+					<img src="{{product.img1}}">
+				</td>
+				<td class="dts">
+					<h3>{{ product.name }}</h3>
+					<span>{{ product.category }}</span>
+					<p>{{ product.price }} BDT</p>
+					<p *ngIf="product.best_sell || product.featured || product.trending">
+						<mat-chip-list aria-label="Options">
+							<mat-chip *ngIf="product.best_sell">Best Sell</mat-chip>
+							<mat-chip *ngIf="product.featured">Featured</mat-chip>
+							<mat-chip *ngIf="product.trending">Trending</mat-chip>
+						</mat-chip-list>
+					</p>
+				</td>
+				<td class="about">
+					<p>{{ product.description }}</p>
+				</td>
+				<td class="actions">
+					<button mat-raised-button color="primary" (click)="onOpenDialog(productShop)">Edit</button>
+					<button mat-raised-button color="warn" (click)="onDelete(product)">Delete</button>
+				</td>
+
+				<ng-template #productShop>
+					<h2 matDialogTitle>Product!</h2>
+					<form #productUpdateForm="ngForm">
+						<mat-dialog-content>
+							<div>
+								<mat-grid-list cols="3" gutterSize="10px">
+									<mat-grid-tile>
+									  <div class="uploadImage" *ngIf="!product.img1">
+										<label for="file">Choose Image 1</label>
+										<input type="file" class="inputfile" name="img1" accept="image/*" (change)="onImageSelect(product, 'img1', $event)">
+									  </div>
+									  <div class="uploadImage" *ngIf="product.img1">
+										<button id="x" (click)="deSelect(product, 'img1')">X</button>
+										<img src="{{product.img1}}">
+									  </div>
+									</mat-grid-tile>
+									<mat-grid-tile>
+									  <div class="uploadImage" *ngIf="!product.img2">
+										<label for="file">Choose Image 2</label>
+										<input type="file" class="inputfile" name="img2" accept="image/*" (change)="onImageSelect(product, 'img2', $event)">
+									  </div>
+									  <div class="uploadImage" *ngIf="product.img2">
+										<button id="x" (click)="deSelect(product, 'img2')">X</button>
+										<img src="{{product.img2}}">
+									  </div>
+									</mat-grid-tile>
+									<mat-grid-tile>
+									  <div class="uploadImage" *ngIf="!product.img3">
+										<label for="file">Choose Image 3</label>
+										<input type="file" class="inputfile" name="img3" accept="image/*" (change)="onImageSelect(product, 'img3', $event)">
+									  </div>
+									  <div class="uploadImage" *ngIf="product.img3">
+										<button id="x" (click)="deSelect(product, 'img3')">X</button>
+										<img src="{{product.img3}}">
+									  </div>
+									</mat-grid-tile>
+								</mat-grid-list>
+								<mat-form-field floatLabel="auto" appearance="outline">
+									<mat-label>Name</mat-label>
+									<input type="text" matInput name="name" [(ngModel)]="product.name" required>
+								</mat-form-field>
+								<mat-form-field floatLabel="auto" appearance="outline">
+									<mat-label>Catagory</mat-label>
+									<mat-select [(value)]="product.category">
+									  <mat-optgroup label="Catagory Name">
+										<mat-option *ngFor="let catagory of catagories" value="{{catagory.name}}">{{catagory.name}}</mat-option>
+									  </mat-optgroup>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field floatLabel="auto" appearance="outline">
+									<mat-label>Price</mat-label>
+									<input type="number" matInput name="price" [(ngModel)]="product.price" required>
+								</mat-form-field>
+								<mat-form-field floatLabel="auto" appearance="outline">
+									<mat-label>Description</mat-label>
+									<textarea matInput name="description" [(ngModel)]="product.description" required></textarea>
+								</mat-form-field>
+								<section class="option-section">
+									<mat-checkbox class="option-margin" name="trending" [(ngModel)]="product.trending">Trending</mat-checkbox>
+									<mat-checkbox class="option-margin" name="featured"  [(ngModel)]="product.featured">Featured</mat-checkbox>
+									<mat-checkbox class="option-margin" name="best_sell"  [(ngModel)]="product.best_sell">Best Sell</mat-checkbox>
+								  </section>
+							</div>
+						</mat-dialog-content>
+						<mat-dialog-actions align="end">
+							<button mat-stroked-button matDialogClose color="primary" [disabled]="!productUpdateForm.valid"
+								(click)="onProductUpdate(product)">Update</button>
+						</mat-dialog-actions>
+					</form>
+				</ng-template>
+			</tr>
+		</tbody>
+	</table>
 </div>

@@ -27,7 +27,8 @@ import { MatButtonModule,
   MatDialogModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule} from '@angular/material';
+  MatPaginatorModule,
+  MatChipsModule} from '@angular/material';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSliderModule } from '@angular/material/slider';
 
@@ -62,7 +63,8 @@ const material = [
   MatDialogModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatChipsModule
 ];
 
 @NgModule({
